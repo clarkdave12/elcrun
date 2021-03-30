@@ -16,6 +16,8 @@ import routes from './router';
 
 Vue.component('app-component', require('./App.vue').default);
 Vue.component('navigation', require('./components/Navbar.vue').default);
+Vue.component('overview',require('./pages/Overview.vue').default);
+Vue.component('settings',require('./pages/Settings.vue').default);
 
 const app = new Vue({
     el: '#app',
