@@ -5,18 +5,23 @@ export default {
     namespaced: true,
 
     state: {
-        elections: []
+        elections: [],
+        election: {}
     },
 
     getters: {
 
-        getElections: state => state.elections
+        getElections: state => state.elections,
+
+        getElection: state => state.election
 
     },
 
     mutations: {
 
-        SET_ELECTIONS: (state, elections) => state.elections = elections
+        SET_ELECTIONS: (state, elections) => state.elections = elections,
+
+        SET_ELECTION: (state, election) => state.election = election
 
     },
 
@@ -51,6 +56,26 @@ export default {
                 })
                 .then(response => {
                     commit('SET_ELECTIONS', response.data.elections)
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                })
+            });
+        },
+
+        getElectionById({commit}, id) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    method: 'GET',
+                    url: '/api/elections/' + id,
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                    }
+                })
+                .then(response => {
+                    console.log(response.data.election);
+                    commit('SET_ELECTION', response.data.election);
                     resolve(response);
                 })
                 .catch(error => {

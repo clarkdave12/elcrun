@@ -1,8 +1,10 @@
 import Dashboard from '../pages/Dashboard.vue';
 import CreateElection from '../pages/CreateElection.vue';
-import AccountPage from '../pages/AccountPAge.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
+
+
+import ElectionMain from '../pages/ElectionMain.vue';
 import Overview from '../pages/Overview.vue';
 import Settings from '../pages/Settings.vue';
 
@@ -15,7 +17,8 @@ import store from '../store';
 function userAuth(to, from, next) {
 
     if(localStorage.getItem('access_token')) {
-        if(store.getters['userModule/getUser'] != {}) {
+        if(!store.getters['userModule/getUser']) {
+            console.log(store.getters['userModule/getUser']);
             next();
         }
         else {
@@ -64,15 +67,36 @@ export default {
             component: CreateElection,
             beforeEnter: userAuth
         },
+        {
+            path: '/election/:electionId',
+            name: 'election',
+            component: ElectionMain,
+            beforeEnter: userAuth,
+            children: [
+                {
+                    path: 'overview',
+                    name: 'overview',
+                    component: Overview,
+                    beforeEnter: userAuth
+                },
+                {
+                    path: 'settings',
+                    name: 'settings',
+                    component: Settings,
+                    beforeEnter: userAuth
+                },
+                {
+                    path:'/voters',
+                    name:'voters',
+                    component: VoterCreation,
+                    beforeEnter: userAuth
+                }
+            ]
+        },
 
 
         // Francis routes workstation
 
-        {
-            path:'/votercreation',
-            name:'/votercreation',
-            component: VoterCreation
-        },
         {
             path:'/voterlogin',
             name:'voterlogin',
@@ -88,16 +112,16 @@ export default {
 
         // Rommel routes workstation
 
-        {
-            path: '/overview',
-            name: 'overview',
-            component: Overview
-        },
-        {
-            path: '/settings',
-            name: 'settings',
-            component: Settings
-        },
+        // {
+        //     path: '/overview',
+        //     name: 'overview',
+        //     component: Overview
+        // },
+        // {
+        //     path: '/settings',
+        //     name: 'settings',
+        //     component: Settings
+        // },
 
         /////////////////////////////
 

@@ -1,9 +1,6 @@
 <template>
-    <b-container> 
-        <b-card style="max-width: 100% max-heigth: 200px">
-            <h3>Election Title</h3>
-        </b-card>
-        <b-card class="mt-2 ">  
+    <b-container>
+        <b-card class="mt-2 ">
             <b-card-text class="float-left"><h3>Voters</h3></b-card-text>
             <b-button variant="outline-dark" class="float-right ml-2">●●●</b-button>
             <b-button variant="success" class="float-right">Add Voter</b-button>

@@ -44,4 +44,12 @@ class ElectionController extends Controller
             'elections' => $elections
         ], 200);
     }
+
+    public function getElectionById($id) {
+
+        $election = Election::where('id', $id)->with('election_status')
+        ->first();
+
+        return response()->json(['election' => $election], 200);
+    }
 }

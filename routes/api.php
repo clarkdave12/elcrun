@@ -26,5 +26,6 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/elections', [ElectionController::class, 'addElection'])->middleware('auth:api');
 Route::get('/elections', [ElectionController::class, 'getElections'])->middleware('auth:api');
+Route::get('/elections/{id}', [ElectionController::class, 'getElectionById'])->middleware('auth:api');
 
 Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->middleware('auth:api');

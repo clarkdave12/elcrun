@@ -2,19 +2,6 @@
 
     <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <b-navbar toggleable="sm" type="light" variant="light">
-    <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
-
-    <b-navbar-brand>
-        <h4>Election Title</h4>
-        </b-navbar-brand>
-
-    <b-collapse id="nav-text-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-text>Running</b-nav-text>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
 
   <b-navbar variant="light" type="light">
     <b-navbar-brand>
@@ -30,7 +17,7 @@
                 <div class="alert alert-success">Your election is running and will automatically end in 9 days 17 hours 0 minutes </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-8">
                 <div class="box" style="margin-bottom: 10px;">
@@ -46,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <input type="url" id="typeURL" class="form-control"/>
+                                    <input type="url" :placeholder="election.election_url" :value="election.election_url" id="typeURL" class="form-control"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -62,7 +49,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <input type="url" id="typeURL" class="form-control"/>
+                                    <input type="url" :placeholder="election.short_url" :value="election.short_url" id="typeURL" class="form-control"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -94,7 +81,7 @@
 
                     <div class="container-md">
                     <b-card bg-variant="danger" text-variant="white" header="4" class="text-center" style="margin-bottom: 10px;">
-                        <b-card-text>Ballot Questions</b-card-text>
+                        <!-- <b-card-text>Ballot Questions</b-card-text> -->
                     </b-card>
                     </div>
 
@@ -108,8 +95,15 @@
 
         </div>
     </b-container>
-    
-
-  
 </div>
 </template>
+
+<script>
+export default {
+    computed: {
+        election() {
+            return this.$store.getters['electionModule/getElection'];
+        }
+    }
+}
+</script>

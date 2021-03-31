@@ -2,19 +2,6 @@
 
     <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <b-navbar toggleable="sm" type="light" variant="light">
-    <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
-
-    <b-navbar-brand>
-        <h4>Election Title</h4>
-        </b-navbar-brand>
-
-    <b-collapse id="nav-text-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-text>Running</b-nav-text>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
 
   <b-navbar variant="light" type="light">
     <b-navbar-brand>
@@ -42,7 +29,7 @@
             example
         </div>
     </div>
-  
+
 </div>
 </template>
 
