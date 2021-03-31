@@ -2645,6 +2645,9 @@ function userAuth(to, from, next) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
   routes: [{
+    path: '/',
+    redirect: '/dashboard'
+  }, {
     path: '/login',
     name: 'login',
     component: _pages_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
@@ -2652,9 +2655,6 @@ function userAuth(to, from, next) {
     path: '/register',
     name: 'register',
     component: _pages_Register_vue__WEBPACK_IMPORTED_MODULE_4__.default
-  }, {
-    path: '/',
-    redirect: '/dashboard'
   }, {
     path: '/dashboard',
     name: 'dashboard',
@@ -2665,39 +2665,31 @@ function userAuth(to, from, next) {
     name: 'create_election',
     component: _pages_CreateElection_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     beforeEnter: userAuth
-  }, {
-    path: '/overview',
-    name: 'overview',
-    component: _pages_Overview_vue__WEBPACK_IMPORTED_MODULE_5__.default
-  }, {
-    path: '/',
-    redirect: '/settings'
-  }, {
-    path: '/settings',
-    name: 'settings',
-    component: _pages_Settings_vue__WEBPACK_IMPORTED_MODULE_6__.default
-  }, {
-    path: '/',
-    redirect: '/voterlogin'
+  }, // Francis routes workstation
+  {
+    path: '/votercreation',
+    name: '/votercreation',
+    component: _pages_VoterCreation_vue__WEBPACK_IMPORTED_MODULE_9__.default
   }, {
     path: '/voterlogin',
     name: 'voterlogin',
     component: _pages_VoterLogin_vue__WEBPACK_IMPORTED_MODULE_7__.default
   }, {
-    path: '/',
-    redirect: '/ballot'
-  }, {
     path: '/ballot',
     name: '/ballot',
     component: _pages_Ballot_vue__WEBPACK_IMPORTED_MODULE_8__.default
+  }, /////////////////////////////
+  // Rommel routes workstation
+  {
+    path: '/overview',
+    name: 'overview',
+    component: _pages_Overview_vue__WEBPACK_IMPORTED_MODULE_5__.default
   }, {
-    path: '/',
-    redirect: '/votercreation'
-  }, {
-    path: '/votercreation',
-    name: '/votercreation',
-    component: _pages_VoterCreation_vue__WEBPACK_IMPORTED_MODULE_9__.default
-  }]
+    path: '/settings',
+    name: 'settings',
+    component: _pages_Settings_vue__WEBPACK_IMPORTED_MODULE_6__.default
+  } /////////////////////////////
+  ]
 });
 
 /***/ }),

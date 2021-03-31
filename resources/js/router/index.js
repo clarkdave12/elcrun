@@ -10,7 +10,6 @@ import VoterLogin from '../pages/VoterLogin.vue';
 import Ballot from '../pages/Ballot.vue';
 import VoterCreation from '../pages/VoterCreation.vue';
 
-
 import store from '../store';
 
 function userAuth(to, from, next) {
@@ -40,6 +39,10 @@ export default {
 
     routes: [
         {
+            path: '/',
+            redirect: '/dashboard'
+        },
+        {
             path: '/login',
             name: 'login',
             component: Login
@@ -48,10 +51,6 @@ export default {
             path: '/register',
             name: 'register',
             component: Register
-        },
-        {
-            path: '/',
-            redirect: '/dashboard'
         },
         {
             path: '/dashboard',
@@ -65,23 +64,14 @@ export default {
             component: CreateElection,
             beforeEnter: userAuth
         },
+
+
+        // Francis routes workstation
+
         {
-            path: '/overview',
-            name: 'overview',
-            component: Overview
-        },
-        {
-            path: '/',
-            redirect: '/settings'
-        },
-        {
-            path: '/settings',
-            name: 'settings',
-            component: Settings
-        },
-        {
-            path:'/',
-            redirect:'/voterlogin'
+            path:'/votercreation',
+            name:'/votercreation',
+            component: VoterCreation
         },
         {
             path:'/voterlogin',
@@ -89,22 +79,27 @@ export default {
             component: VoterLogin
         },
         {
-            path:'/',
-            redirect:'/ballot'
-        },
-        {
             path:'/ballot',
             name:'/ballot',
             component: Ballot
         },
+
+        /////////////////////////////
+
+        // Rommel routes workstation
+
         {
-            path:'/',
-            redirect:'/votercreation'
+            path: '/overview',
+            name: 'overview',
+            component: Overview
         },
         {
-            path:'/votercreation',
-            name:'/votercreation',
-            component: VoterCreation
-        }
+            path: '/settings',
+            name: 'settings',
+            component: Settings
+        },
+
+        /////////////////////////////
+
     ]
 }
