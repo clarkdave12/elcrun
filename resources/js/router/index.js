@@ -3,6 +3,13 @@ import CreateElection from '../pages/CreateElection.vue';
 import AccountPage from '../pages/AccountPAge.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
+import Overview from '../pages/Overview.vue';
+import Settings from '../pages/Settings.vue';
+
+import VoterLogin from '../pages/VoterLogin.vue';
+import Ballot from '../pages/Ballot.vue';
+import VoterCreation from '../pages/VoterCreation.vue';
+
 
 import store from '../store';
 
@@ -27,8 +34,6 @@ function userAuth(to, from, next) {
     }
 
 }
-import Overview from '../pages/Overview.vue';
-import Settings from '../pages/Settings.vue';
 
 export default {
     mode: 'history',
@@ -73,6 +78,33 @@ export default {
             path: '/settings',
             name: 'settings',
             component: Settings
+        },
+        {
+            path:'/',
+            redirect:'/voterlogin'
+        },
+        {
+            path:'/voterlogin',
+            name:'voterlogin',
+            component: VoterLogin
+        },
+        {
+            path:'/',
+            redirect:'/ballot'
+        },
+        {
+            path:'/ballot',
+            name:'/ballot',
+            component: Ballot
+        },
+        {
+            path:'/',
+            redirect:'/votercreation'
+        },
+        {
+            path:'/votercreation',
+            name:'/votercreation',
+            component: VoterCreation
         }
     ]
 }
