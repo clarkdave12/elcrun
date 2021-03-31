@@ -1,6 +1,7 @@
 import Dashboard from '../pages/Dashboard.vue';
 import VoterLogin from '../pages/VoterLogin.vue';
 import Ballot from '../pages/Ballot.vue';
+import VoterCreation from '../pages/VoterCreation.vue';
 export default {
     mode: 'history',
 
@@ -31,6 +32,15 @@ export default {
             path:'/ballot',
             name:'/ballot',
             component: Ballot
+        },
+        {
+            path:'/',
+            redirect:'/votercreation'
+        },
+        {
+            path:'/votercreation',
+            name:'/votercreation',
+            component: VoterCreation
         }
     ]
 }
