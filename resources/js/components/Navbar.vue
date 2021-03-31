@@ -2,7 +2,7 @@
     <div>
         <b-navbar class="px-5" toggleable="lg" type="dark" variant="primary">
 
-            <b-navbar-brand class="ml-3" href="#">
+            <b-navbar-brand class="ml-3" to="/">
                 <h3>electionrunner</h3>
             </b-navbar-brand>
 
@@ -10,7 +10,7 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item href="#">Dashboard</b-nav-item>
+                    <b-nav-item to="/">Dashboard</b-nav-item>
                     <b-nav-item href="#">Settings</b-nav-item>
                 </b-navbar-nav>
 
@@ -24,7 +24,7 @@
                     <b-nav-item-dropdown right class="mr-3">
                         <!-- Using 'button-content' slot -->
                         <template #button-content>
-                        <em>User</em>
+                        <em>{{ user.name }}</em>
                         </template>
                         <b-dropdown-item href="#">Profile</b-dropdown-item>
                         <b-dropdown-item href="#">Sign Out</b-dropdown-item>
@@ -34,3 +34,23 @@
         </b-navbar>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            user: {}
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch('userModule/getCurrentUser')
+            .then(response => {
+                this.user = response;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+</script>

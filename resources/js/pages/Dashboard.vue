@@ -1,12 +1,14 @@
 <template>
-    <b-container>
-        
-        <b-row class="py-3 px-5 shadow">
+    <div class="container-fluid">
+        <navigation></navigation>
+
+        <div class="container">
+            <b-row class="py-3 px-5 shadow">
             <b-col cols="12" md="6">
                 <h3>Dashboard</h3>
             </b-col>
             <b-col cols="12" md="6">
-                <b-button variant="success" class="float-right">New Election</b-button>
+                <b-button @click="navigate('create_election')" variant="success" class="float-right">New Election</b-button>
             </b-col>
         </b-row>
 
@@ -15,17 +17,17 @@
                 <b-form-input placeholder="Search fro election..."></b-form-input>
             </b-col>
             <b-col cols="12" md="6" class="mb-2">
-                <select v-model="currentFilter" name="filter" id="filterbox" class="form-control">
+                <select name="filter" id="filterbox" class="form-control">
                     <option value="" selected disabled> Select Filter</option>
-                    <option selected="true" v-for="option in options" v-bind:key="option.id">
+                    <!-- <option selected="true" v-for="option in options" v-bind:key="option.id">
                         {{ option.name }}
-                    </option>
+                    </option> -->
                 </select>
             </b-col>
         </b-row>
 
         <table class="table table-striped">
-            <caption>2 Elections</caption>
+            <caption>{{ electionCount }} Elections</caption>
             <thead>
                 <tr class="dark">
                     <th>TITLE</th>
@@ -35,66 +37,64 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="election in elections" v-bind:key="election.id">
-                    <td>{{ election.name }}</td>
-                    <td>{{ election.start }}</td>
-                    <td>{{ election.end }}</td>
-                    <td>{{ election.status }}</td>
+                <tr class="tableRow" @click="goElection(election.id)" v-for="election in elections" v-bind:key="election.id">
+                    <td>{{ election.title }}</td>
+                    <td>{{ election.start_date }}</td>
+                    <td>{{ election.end_date }}</td>
+                    <td>{{ election.election_status.name }}</td>
                 </tr>
             </tbody>
         </table>
-
-    </b-container>
+        </div>
+    </div>
 </template>
 
 <script>
+
+import Navbar from '../components/Navbar.vue';
+
     export default {
+        components: {
+            navigation: Navbar
+        },
+
         data() {
             return {
-                options: [
-                    {
-                        id: 1,
-                        name: 'Building'
-                    },
-                    {
-                        id: 2,
-                        name: 'Running'
-                    },
-                    {
-                        id: 3,
-                        name: 'Completed'
-                    }
-                ],
-                currentFilter: '',
-                elections: [
-                    {
-                        id: 1,
-                        name: 'Election 1',
-                        start: '29-03-2021',
-                        end: '04-04-2021',
-                        status: 'Running'
-                    },
-                    {
-                        id: 2,
-                        name: 'Election 2',
-                        start: '29-03-2021',
-                        end: '04-04-2021',
-                        status: 'Running'
-                    },
-                    {
-                        id: 3,
-                        name: 'Election 3',
-                        start: '29-03-2021',
-                        end: '04-04-2021',
-                        status: 'Running'
-                    }
-                ]
+                elections: []
             }
         },
-        method: {
-            changeFilter() {
-                this.data.currentFilter = 'Filter by ' + val;
+
+        computed: {
+            electionCount: function () {
+                return this.elections.length;
             }
+        },
+
+        methods: {
+            navigate(link) {
+                this.$router.push({name: link});
+            },
+
+            goElection(electionId) {
+                this.$router.push('/election/' + electionId);
+            }
+        },
+
+        mounted() {
+            this.$store.dispatch('electionModule/getElections')
+                .then(response => {
+                    this.elections = this.$store.getters['electionModule/getElections'];
+                })
+                .catch(error => {
+                    console.log(error.response);
+                });
         }
     }
 </script>
+
+<style scoped>
+    .tableRow:hover {
+        cursor: pointer;
+        background: lightblue;
+    }
+</style>
