@@ -1,5 +1,4 @@
 import Dashboard from '../pages/Dashboard.vue';
-<<<<<<< HEAD
 import CreateElection from '../pages/CreateElection.vue';
 import AccountPage from '../pages/AccountPAge.vue';
 import Login from '../pages/Login.vue';
@@ -28,10 +27,8 @@ function userAuth(to, from, next) {
     }
 
 }
-=======
 import Overview from '../pages/Overview.vue';
 import Settings from '../pages/Settings.vue';
->>>>>>> origin/OverViewAndSettings
 
 export default {
     mode: 'history',
@@ -54,7 +51,6 @@ export default {
         {
             path: '/dashboard',
             name: 'dashboard',
-<<<<<<< HEAD
             component: Dashboard,
             beforeEnter: userAuth
         },
@@ -63,12 +59,6 @@ export default {
             name: 'create_election',
             component: CreateElection,
             beforeEnter: userAuth
-=======
-            component: Dashboard
-        },
-        {
-            path: '/',
-            redirect: '/overview'
         },
         {
             path: '/overview',
@@ -83,7 +73,6 @@ export default {
             path: '/settings',
             name: 'settings',
             component: Settings
->>>>>>> origin/OverViewAndSettings
         }
     ]
 }
