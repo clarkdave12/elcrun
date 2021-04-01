@@ -2018,6 +2018,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      file1: null
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/CreateElection.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/CreateElection.vue?vue&type=script&lang=js& ***!
@@ -2833,7 +2918,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_VoterLogin_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/VoterLogin.vue */ "./resources/js/pages/VoterLogin.vue");
 /* harmony import */ var _pages_Ballot_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/Ballot.vue */ "./resources/js/pages/Ballot.vue");
 /* harmony import */ var _pages_VoterCreation_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/VoterCreation.vue */ "./resources/js/pages/VoterCreation.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+/* harmony import */ var _pages_BallotCreation_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/BallotCreation.vue */ "./resources/js/pages/BallotCreation.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+
 
 
 
@@ -2848,11 +2935,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function userAuth(to, from, next) {
   if (localStorage.getItem('access_token')) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_10__.default.getters["userModule/getUser"]) {
-      console.log(_store__WEBPACK_IMPORTED_MODULE_10__.default.getters["userModule/getUser"]);
+    if (!_store__WEBPACK_IMPORTED_MODULE_11__.default.getters["userModule/getUser"]) {
+      console.log(_store__WEBPACK_IMPORTED_MODULE_11__.default.getters["userModule/getUser"]);
       next();
     } else {
-      _store__WEBPACK_IMPORTED_MODULE_10__.default.dispatch('userModule/getCurrentUser').then(function () {
+      _store__WEBPACK_IMPORTED_MODULE_11__.default.dispatch('userModule/getCurrentUser').then(function () {
         next();
       })["catch"](function () {
         next('/login');
@@ -2916,6 +3003,10 @@ function userAuth(to, from, next) {
     path: '/ballot',
     name: '/ballot',
     component: _pages_Ballot_vue__WEBPACK_IMPORTED_MODULE_8__.default
+  }, {
+    path: '/ballotcreation',
+    name: 'ballotcreation',
+    component: _pages_BallotCreation_vue__WEBPACK_IMPORTED_MODULE_10__.default
   } /////////////////////////////
   // Rommel routes workstation
   // {
@@ -45591,7 +45682,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar {\n  height: 100%;\n  width: 180px;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  background-color: #fff;\n  overflow-x: hidden;\n  padding-top: 16px;\n}\n.sidebar a {\n  padding: 6px 8px 6px 16px;\n  text-decoration: none;\n  font-size: 20px;\n  color: #000000;\n  display: block;\n}\n/* Style links on mouse-over */\n.sidebar a:hover {\n  color: #f1f1f1;\n}\n@media screen and (max-height: 450px) {\n.sidebar {padding-top: 15px;}\n.sidebar a {font-size: 18px;}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar {\r\n  height: 100%;\r\n  width: 180px;\r\n  z-index: 1;\r\n  top: 0;\r\n  left: 0;\r\n  background-color: #fff;\r\n  overflow-x: hidden;\r\n  padding-top: 16px;\n}\n.sidebar a {\r\n  padding: 6px 8px 6px 16px;\r\n  text-decoration: none;\r\n  font-size: 20px;\r\n  color: #000000;\r\n  display: block;\n}\r\n/* Style links on mouse-over */\n.sidebar a:hover {\r\n  color: #f1f1f1;\n}\n@media screen and (max-height: 450px) {\n.sidebar {padding-top: 15px;}\n.sidebar a {font-size: 18px;}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49831,6 +49922,45 @@ component.options.__file = "resources/js/pages/Ballot.vue"
 
 /***/ }),
 
+/***/ "./resources/js/pages/BallotCreation.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/BallotCreation.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true& */ "./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true&");
+/* harmony import */ var _BallotCreation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BallotCreation.vue?vue&type=script&lang=js& */ "./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _BallotCreation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "f73b7128",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/BallotCreation.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/pages/CreateElection.vue":
 /*!***********************************************!*\
   !*** ./resources/js/pages/CreateElection.vue ***!
@@ -50240,6 +50370,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BallotCreation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BallotCreation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BallotCreation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/pages/CreateElection.vue?vue&type=script&lang=js&":
 /*!************************************************************************!*\
   !*** ./resources/js/pages/CreateElection.vue?vue&type=script&lang=js& ***!
@@ -50523,6 +50669,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Ballot_vue_vue_type_template_id_36db30ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Ballot_vue_vue_type_template_id_36db30ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Ballot.vue?vue&type=template&id=36db30ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Ballot.vue?vue&type=template&id=36db30ed&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BallotCreation_vue_vue_type_template_id_f73b7128_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true&");
 
 
 /***/ }),
@@ -51033,6 +51196,297 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/BallotCreation.vue?vue&type=template&id=f73b7128&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-card-group",
+        { staticClass: "mx-auto" },
+        [
+          _c(
+            "b-card",
+            [
+              _c("b-card-text", { staticClass: "float-left" }, [
+                _c("h5", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Test Election")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-badge",
+                { staticClass: "ml-2", attrs: { variant: "secondary" } },
+                [_vm._v("Building")]
+              ),
+              _vm._v(" "),
+              _c("b-card-text", { staticClass: "float-right" }, [
+                _c("h5", { staticClass: "mt-1 ml-2" }, [_vm._v("0 Voters")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-badge",
+                {
+                  staticClass: "float-right mt-2",
+                  attrs: { variant: "success" }
+                },
+                [_vm._v("Free")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-card-group",
+        [
+          _c(
+            "b-card",
+            [
+              _c("b-card-text", { staticClass: "float-left" }, [
+                _c("h5", [_vm._v("Ballot")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticClass: "float-right ml-1",
+                  attrs: { variant: "secondary", size: "sm" }
+                },
+                [_vm._v("●●●")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticClass: "float-right",
+                  attrs: { variant: "success", size: "sm" }
+                },
+                [_vm._v("+ Add Question")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticClass: "float-right mr-1",
+                  attrs: { variant: "outline-primary", size: "sm" }
+                },
+                [_vm._v("Import")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _c(
+            "b-card-group",
+            { staticClass: "mx-auto mt-5", staticStyle: { width: "800px" } },
+            [
+              _c(
+                "b-card",
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "float-right mt-3",
+                      attrs: { variant: "secondary", size: "sm" }
+                    },
+                    [_vm._v("●●●")]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bold" }, [
+                    _vm._v("New Multiple Choice Question")
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", [_vm._v("Multiple Choice")]),
+                  _vm._v(" "),
+                  _c(
+                    "b-tabs",
+                    { staticClass: "mt-4" },
+                    [
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Options" } },
+                        [
+                          _c(
+                            "b-card-group",
+                            { staticClass: "mx-auto mt-1" },
+                            [
+                              _c(
+                                "b-card",
+                                [
+                                  _c("b-img", {
+                                    staticClass: "mt-2 ml-4 mb-2",
+                                    attrs: {
+                                      left: "",
+                                      src:
+                                        "https://picsum.photos/125/125/?image=58",
+                                      alt: "Left image"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-card-text",
+                                    { staticClass: "ml-3 mt-5 float-left" },
+                                    [_c("h6", [_vm._v("Name of Candidate")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-button",
+                                    {
+                                      staticClass: "float-right mt-5",
+                                      attrs: { variant: "outline-primary" }
+                                    },
+                                    [_vm._v("Details")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-card-group",
+                            { staticClass: "mx-auto mt-1" },
+                            [
+                              _c(
+                                "b-card",
+                                [
+                                  _c("b-img", {
+                                    staticClass: "mt-2 ml-4 mb-2",
+                                    attrs: {
+                                      left: "",
+                                      src:
+                                        "https://picsum.photos/125/125/?image=58",
+                                      alt: "Left image"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-card-text",
+                                    { staticClass: "ml-3 mt-5 float-left" },
+                                    [_c("h6", [_vm._v("Name of Candidate")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-button",
+                                    {
+                                      staticClass: "float-right mt-5",
+                                      attrs: { variant: "outline-primary" }
+                                    },
+                                    [_vm._v("Details")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "mt-2 ml-1 mb-1 float-left",
+                              attrs: { variant: "success" }
+                            },
+                            [_vm._v("Add Option")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Details" } },
+                        [
+                          _c("h4", { staticClass: "mt-2" }, [_vm._v("Rules")]),
+                          _vm._v(" "),
+                          _c(
+                            "b-card",
+                            { staticClass: "mb-1", attrs: { "no-body": "" } },
+                            [
+                              _vm._v(
+                                "Voters are required to select a minimum of 1 option(s)"
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("b-card", { attrs: { "no-body": "" } }, [
+                            _vm._v("Voters can only select 1 option")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-tab",
+                        { attrs: { title: "Attachments" } },
+                        [
+                          _c("h6", { staticClass: "mt-2" }, [
+                            _vm._v(
+                              "You can attach up to 3 documents to this question. Learn more about ballot question attachments."
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("b-form-file", {
+                            staticClass: "mt-3",
+                            attrs: { plain: "" },
+                            model: {
+                              value: _vm.file1,
+                              callback: function($$v) {
+                                _vm.file1 = $$v
+                              },
+                              expression: "file1"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52234,23 +52688,26 @@ var render = function() {
           _c(
             "b-button",
             {
-              staticClass: "float-right ml-2",
-              attrs: { variant: "outline-dark" }
+              staticClass: "float-right ml-1",
+              attrs: { variant: "outline-dark", size: "sm" }
             },
             [_vm._v("●●●")]
           ),
           _vm._v(" "),
           _c(
             "b-button",
-            { staticClass: "float-right", attrs: { variant: "success" } },
+            {
+              staticClass: "float-right",
+              attrs: { variant: "success", size: "sm" }
+            },
             [_vm._v("Add Voter")]
           ),
           _vm._v(" "),
           _c(
             "b-button",
             {
-              staticClass: "float-right mr-2",
-              attrs: { variant: "outline-primary" }
+              staticClass: "float-right mr-1",
+              attrs: { variant: "outline-primary", size: "sm" }
             },
             [_vm._v("Import")]
           )

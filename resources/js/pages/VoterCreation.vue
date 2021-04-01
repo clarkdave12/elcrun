@@ -2,9 +2,9 @@
     <b-container>
         <b-card class="mt-2 ">
             <b-card-text class="float-left"><h3>Voters</h3></b-card-text>
-            <b-button variant="outline-dark" class="float-right ml-2">●●●</b-button>
-            <b-button variant="success" class="float-right">Add Voter</b-button>
-            <b-button variant="outline-primary" class="float-right mr-2">Import</b-button>
+            <b-button variant="outline-dark" class="float-right ml-1" size="sm">●●●</b-button>
+            <b-button variant="success" class="float-right" size="sm">Add Voter</b-button>
+            <b-button variant="outline-primary" class="float-right mr-1" size="sm">Import</b-button>
         </b-card>
         <b-row class="mt-4">
             <b-col cols="12" md="6" class="mb-2">
