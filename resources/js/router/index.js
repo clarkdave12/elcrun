@@ -72,6 +72,7 @@ export default {
             name: 'election',
             component: ElectionMain,
             beforeEnter: userAuth,
+            redirect: {name: 'overview'},
             children: [
                 {
                     path: 'overview',
@@ -86,7 +87,7 @@ export default {
                     beforeEnter: userAuth
                 },
                 {
-                    path:'/voters',
+                    path:'voters',
                     name:'voters',
                     component: VoterCreation,
                     beforeEnter: userAuth

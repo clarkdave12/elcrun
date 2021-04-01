@@ -1,9 +1,8 @@
 
 
-export const strGen = function () {
+export const strGen = function (len) {
 
     let result = '';
-    let len = 8;
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for(let i = 0; i < len; i++) {
@@ -11,4 +10,12 @@ export const strGen = function () {
     }
 
     return result;
+}
+
+export const strComp = function(key1, key2) {
+
+    let result = key1 + '-' + key2;
+
+    return result;
+
 }

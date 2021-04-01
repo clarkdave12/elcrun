@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->middleware('auth:api');
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
@@ -28,4 +30,7 @@ Route::post('/elections', [ElectionController::class, 'addElection'])->middlewar
 Route::get('/elections', [ElectionController::class, 'getElections'])->middleware('auth:api');
 Route::get('/elections/{id}', [ElectionController::class, 'getElectionById'])->middleware('auth:api');
 
-Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->middleware('auth:api');
+Route::post('/voters/{electionId}', [VoterController::class, 'addVoter'])->middleware('auth:api');
+Route::get('/voters/{electionId}', [VoterController::class, 'getVoters'])->middleware('auth:api');
+Route::put('/voters/{electionId}', [VoterController::class, 'updateVoter'])->middleware('auth:api');
+Route::delete('/voters/{electionId}/{id}', [VoterController::class, 'deleteVoter'])->middleware('auth:api');

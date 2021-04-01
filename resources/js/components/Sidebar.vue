@@ -1,6 +1,10 @@
 <template>
   <div id="sidebar">
         <b-list-group id="group">
+            <b-list-group-item @click="navigate('dashboard')" button class="d-flex justify-content-between align-items-center">
+                ElectionRunner
+            </b-list-group-item>
+
             <b-list-group-item @click="navigate('overview')" button class="d-flex justify-content-between align-items-center">
                 <b-icon icon="house-door-fill"></b-icon>
                 Overview

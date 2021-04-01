@@ -18,4 +18,8 @@ class Election extends Model
     public function election_status() {
         return $this->belongsTo(ElectionStatus::class);
     }
+
+    public function voters() {
+        return $this->hasMany(Voter::class);
+    }
 }

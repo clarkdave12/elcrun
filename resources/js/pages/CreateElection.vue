@@ -63,7 +63,7 @@ export default {
 
         createElection() {
             let baseURL = conf.BASE_URL;
-            let randStr = strGen();
+            let randStr = strGen(8);
             let data = {
                 'title': this.input.title,
                 'start_date': this.input.start,

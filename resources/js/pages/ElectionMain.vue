@@ -39,7 +39,7 @@ export default {
     },
 
     mounted() {
-        let id = this.$route.params.electionId;
+        const id = this.$route.params.electionId;
         this.$store.dispatch('electionModule/getElectionById', id)
             .catch(error => {
                 console.log(error);

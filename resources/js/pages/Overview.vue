@@ -14,7 +14,7 @@
       <b-container>
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-success">Your election is running and will automatically end in 9 days 17 hours 0 minutes </div>
+                <div v-if="election.election_status.name == 'running'" class="alert alert-success">Your election is running and will automatically end in 9 days 17 hours 0 minutes </div>
             </div>
         </div>
 
