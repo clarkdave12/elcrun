@@ -11,7 +11,7 @@ import Settings from '../pages/Settings.vue';
 import VoterLogin from '../pages/VoterLogin.vue';
 import Ballot from '../pages/Ballot.vue';
 import VoterCreation from '../pages/VoterCreation.vue';
-
+import BallotCreation from '../pages/BallotCreation.vue'
 import store from '../store';
 
 function userAuth(to, from, next) {
@@ -91,7 +91,12 @@ export default {
                     name:'voters',
                     component: VoterCreation,
                     beforeEnter: userAuth
-                }
+                },
+                {
+                    path:'ballot',
+                    name:'ballot',
+                    component: Ballot
+                },
             ]
         },
 
@@ -103,11 +108,8 @@ export default {
             name:'voterlogin',
             component: VoterLogin
         },
-        {
-            path:'/ballot',
-            name:'/ballot',
-            component: Ballot
-        },
+
+
 
         /////////////////////////////
 
