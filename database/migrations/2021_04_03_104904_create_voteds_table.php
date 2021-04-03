@@ -13,7 +13,7 @@ class CreateVotedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('voteds', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('voter_id');
             $table->unsignedBigInteger('election_id');

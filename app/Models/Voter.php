@@ -11,7 +11,6 @@ class Voter extends Model
 
     protected $guarded = [];
 
-
     public function election() {
         return $this->belongsTo(Election::class);
     }

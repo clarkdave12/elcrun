@@ -15,7 +15,7 @@ import Results  from '../components/settings/Results.vue'
 import DateComponent  from '../components/settings/Date.vue'
 import General  from '../components/settings/General.vue'
 
-import VoterLogin from '../pages/VoterLogin.vue';
+import VoterLogin from '../pages/vote_start/VoterLogin.vue';
 import VotingProcess from '../pages/vote_start/VotingProcess.vue';
 import VoterCreation from '../pages/VoterCreation.vue';
 import BallotCreation from '../pages/BallotCreation.vue'
@@ -44,8 +44,31 @@ function userAuth(to, from, next) {
     else {
         next('/login');
     }
-
 }
+
+
+function notAuth(to, from, next) {
+
+    if(localStorage.getItem('access_token')) {
+        if(!store.getters['userModule/getUser']) {
+            console.log(store.getters['userModule/getUser']);
+            next('/');
+        }
+        else {
+            store.dispatch('userModule/getCurrentUser')
+                .then(() => {
+                    next('/');
+                })
+                .catch(() => {
+                    next();
+                });
+        }
+    }
+    else {
+        next();
+    }
+}
+
 
 export default {
     mode: 'history',
@@ -58,12 +81,14 @@ export default {
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            beforeEnter: notAuth,
         },
         {
             path: '/register',
             name: 'register',
-            component: Register
+            component: Register,
+            beforeEnter: notAuth,
         },
         {
             path: '/dashboard',
@@ -119,7 +144,7 @@ export default {
                         },
                         {
                             path:'voters',
-                            name:'voters',
+                            name:'voter_settings',
                             component: Voters
                         },
                         {

@@ -6,6 +6,8 @@ import electionModule from './modules/election.js';
 import voterModule from './modules/voter.js';
 import ballotModule from './modules/ballot.js';
 
+import votingModule from './modules/voting.js';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -13,7 +15,9 @@ export default new Vuex.Store({
         userModule,
         electionModule,
         voterModule,
-        ballotModule
+        ballotModule,
+
+        votingModule
     }
 
 });

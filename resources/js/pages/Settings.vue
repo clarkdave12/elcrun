@@ -16,7 +16,7 @@
             <div class="sidebar">
                 <a rule="button" @click="navigate('general')"><i class="fa fa-cog"></i> General</a>
                 <a rule="button" @click="navigate('date')"><i class="fa fa-calendar-check-o"></i> Dates</a>
-                <a rule="button" @click="navigate('voters')"><i class="fa fa-users"></i> Voters</a>
+                <a rule="button" @click="navigate('voter_settings')"><i class="fa fa-users"></i> Voters</a>
                 <a rule="button" @click="navigate('messages')"><i class="fa fa-life-ring"></i> Messages</a>
                 <a rule="button" @click="navigate('email_setting')"><i class="fa fa-envelope "></i> Email</a>
                 <a rule="button" @click="navigate('results')"><i class="fa fa-pie-chart"></i> Results</a>

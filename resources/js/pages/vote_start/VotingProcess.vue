@@ -26,14 +26,14 @@
                                 stacked
                                 class="mt-3 text-dark"
                             ></b-form-checkbox-group>
-                        </b-form-group>  
+                        </b-form-group>
                     </b-card>
                 </b-card-group>
-                <b-card-group deck class="mx-auto mt-2" style="width: 800px">               
+                <b-card-group deck class="mx-auto mt-2" style="width: 800px">
                     <b-card style="max-width: 800px">
                         <b-button block variant="success">Submit ballot</b-button>
                     </b-card>
-                </b-card-group>    
+                </b-card-group>
     </div>
 </template>
 

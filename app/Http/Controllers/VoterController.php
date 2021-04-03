@@ -43,7 +43,7 @@ class VoterController extends Controller
         $validated['comp_key'] = '1';
         $voter = Voter::create($validated);
 
-        $voter->comp_key = $voter->id . '-' . $voter->voter_id;
+        $voter->comp_key = bcrypt($voter->id . '-' . $voter->voter_id);
 
         $voter->save();
 

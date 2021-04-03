@@ -28,11 +28,16 @@ class ElectionController extends Controller
         $validated['user_id'] = $user->id;
         $validated['election_status_id'] = $status->id;
 
-        Election::create($validated);
+        $election = Election::create($validated);
+
+        $election->election_url = env('APP_URL') . '/vote' . '/' . $election->id;
+        $election->short_url = env('APP_URL') . '/vote' . '/' . $election->id;
+
+        $election->save();
 
         return response()->json([
             'message' => 'Election created successfully',
-            'data' => $validated
+            'data' => $election
         ], 201);
     }
 

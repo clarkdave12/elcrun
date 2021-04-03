@@ -4,8 +4,10 @@ use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoteProcessController;
 use App\Http\Controllers\VoterController;
 use App\Models\Option;
+use App\Models\Votes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +49,5 @@ Route::delete('/ballot/clear_options/{electionId}/{questionId}', [QuestionContro
 Route::post('/question/option/{questionId}', [OptionController::class, 'addOption'])->middleware('auth:api');
 Route::put('/question/option/{electionId}/{optionId}', [OptionController::class, 'updateOption'])->middleware('auth:api');
 Route::delete('/question/option/{electionId}/{optionId}', [OptionController::class, 'deleteOption'])->middleware('auth:api');
+
+Route::post('/votes/{electionId}', [VoteProcessController::class, 'login']);
