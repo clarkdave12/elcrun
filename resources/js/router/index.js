@@ -3,7 +3,6 @@ import CreateElection from '../pages/CreateElection.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 
-
 import ElectionMain from '../pages/ElectionMain.vue';
 import Overview from '../pages/Overview.vue';
 import Settings from '../pages/Settings.vue';
@@ -17,9 +16,12 @@ import DateComponent  from '../components/settings/Date.vue'
 import General  from '../components/settings/General.vue'
 
 import VoterLogin from '../pages/VoterLogin.vue';
-import Ballot from '../pages/Ballot.vue';
+import VotingProcess from '../pages/vote_start/VotingProcess.vue';
 import VoterCreation from '../pages/VoterCreation.vue';
 import BallotCreation from '../pages/BallotCreation.vue'
+import VoteStart from '../pages/vote_start/VoteStartMain.vue';
+
+
 import store from '../store';
 
 function userAuth(to, from, next) {
@@ -93,6 +95,7 @@ export default {
                     name: 'settings',
                     component: Settings,
                     beforeEnter: userAuth,
+                    redirect: {name: 'general'},
                     children: [
                         {
                             path:'messages',
@@ -152,40 +155,53 @@ export default {
             ]
         },
 
+        // Rye routes workstation ===============
 
-        // Francis routes workstation
+
+
+
+        //=======================================
+
+
+
+
+
+
+        // Francis routes workstation ===========
 
         {
-            path:'/voterlogin',
-            name:'voterlogin',
-            component: VoterLogin
+            path: '/vote/:electionId',
+            name: 'vote_start',
+            component: VoteStart,
+            redirect: { name: 'voter_login' },
+            children: [
+                {
+                    path:'login',
+                    name:'voter_login',
+                    component: VoterLogin
+                },
+                {
+                    path:'voting',
+                    name:'voting_process',
+                    component: VotingProcess
+                },
+            ]
         },
-        {
-            path:'/ballot',
-            name:'/ballot',
-            component: Ballot
-        },
+
+        //=======================================
 
 
 
 
 
-        /////////////////////////////
 
-        // Rommel routes workstation
+        // Rommel routes workstation ============
 
-        // {
-        //     path: '/overview',
-        //     name: 'overview',
-        //     component: Overview
-        // },
-        // {
-        //     path: '/settings',
-        //     name: 'settings',
-        //     component: Settings
-        // },
 
-        /////////////////////////////
+
+
+
+        //=======================================
 
     ]
 }

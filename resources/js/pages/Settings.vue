@@ -60,6 +60,7 @@
   font-size: 20px;
   color: #000000;
   display: block;
+  cursor: pointer;
 }
 /* Style links on mouse-over */
 .sidebar a:hover {
