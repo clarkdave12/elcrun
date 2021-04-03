@@ -108,11 +108,11 @@ export default {
             name:'voterlogin',
             component: VoterLogin
         },
-        // {
-        //     path:'/ballot',
-        //     name:'/ballot',
-        //     component: Ballot
-        // },
+        {
+            path:'/ballot',
+            name:'/ballot',
+            component: Ballot
+        },
 
 
 
