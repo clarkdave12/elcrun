@@ -14,7 +14,7 @@
 
         <b-row class="mt-4">
             <b-col cols="12" md="6" class="mb-2">
-                <b-form-input placeholder="Search fro election..."></b-form-input>
+                <b-form-input placeholder="Search from election..."></b-form-input>
             </b-col>
             <b-col cols="12" md="6" class="mb-2">
                 <select name="filter" id="filterbox" class="form-control">
@@ -52,10 +52,9 @@
 <script>
 
 import Navbar from '../components/Navbar.vue';
-
     export default {
         components: {
-            navigation: Navbar
+            navigation: Navbar,
         },
 
         data() {
