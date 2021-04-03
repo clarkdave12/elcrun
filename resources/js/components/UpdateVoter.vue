@@ -35,7 +35,7 @@
         <div class="row p-3" >
             <b-button @click="saveUpdate" variant="success" class="mr-4">Save Voter</b-button>
             <b-button @click="toggleUpdate" variant="secondary" class="mr-4">Cancel</b-button>
-            <button @click="deleteVoter" class="btn btn-danger">Delete</button>
+            <button @click="deleteVoter" class="btn btn-danger ml-auto">Delete</button>
         </div>
     </div>
 </template>

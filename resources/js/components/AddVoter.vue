@@ -113,7 +113,7 @@ export default {
 #wrapper {
     position: absolute;
     right: 0;
-    top: -7%;
+    top: 0;
     z-index: 1;
     height: 100vh;
     width: 40%;

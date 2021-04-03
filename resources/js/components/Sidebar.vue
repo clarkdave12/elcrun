@@ -19,6 +19,12 @@
                 <b-icon icon="people-fill"></b-icon>
                 Voters
             </b-list-group-item>
+
+            <b-list-group-item button @click="navigate('ballot')" class="d-flex justify-content-between align-items-center">
+                <b-icon icon="menu-button-wide-fill"></b-icon>
+                Ballot
+            </b-list-group-item>
+
         </b-list-group>
     </div>
 </template>

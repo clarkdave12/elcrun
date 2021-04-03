@@ -1,5 +1,6 @@
 import axios from "axios";
 import { reject } from "lodash";
+import cfg from '../../config';
 
 export default {
     namespaced: true,
@@ -38,13 +39,13 @@ export default {
     actions: {
 
         getVoters({commit}, electionId) {
-            const token = 'Bearer ' + localStorage.getItem('access_token');
+
             return new Promise((resolve, reject) => {
                 axios({
                     method: 'GET',
                     url: '/api/voters/' + electionId,
                     headers: {
-                        Authorization: token
+                        Authorization: cfg.TOKEN
                     }
                 })
                 .then(response => {
@@ -59,7 +60,6 @@ export default {
         },
 
         addVoter({commit}, payload) {
-            const token = 'Bearer ' + localStorage.getItem('access_token');
 
             return new Promise((resolve, reject) => {
 
@@ -68,7 +68,7 @@ export default {
                     url: '/api/voters/' + payload.electionId,
                     data: payload.voter,
                     headers: {
-                        Authorization: token,
+                        Authorization: cfg.TOKEN,
                         Accept: 'application/json'
                     }
                 })
@@ -85,7 +85,6 @@ export default {
         },
 
         updateVoter({}, payload) {
-            const token = 'Bearer ' + localStorage.getItem('access_token');
 
             return new Promise((resolve, reject) => {
 
@@ -94,7 +93,7 @@ export default {
                     url: '/api/voters/' + payload.electionId,
                     data: payload.voter,
                     headers: {
-                        Authorization: token,
+                        Authorization: cfg.TOKEN,
                         Accept: 'application/json'
                     }
                 })
@@ -111,7 +110,6 @@ export default {
         },
 
         deleteVoter({}, payload) {
-            const token = 'Bearer ' + localStorage.getItem('access_token');
 
             return new Promise((resolve, reject) => {
 
@@ -119,7 +117,7 @@ export default {
                     method: 'DELETE',
                     url: '/api/voters/' + payload.electionId + '/' + payload.id,
                     headers: {
-                        Authorization: token
+                        Authorization: cfg.TOKEN
                     }
                 })
                 .then(response => {

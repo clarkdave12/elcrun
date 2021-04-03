@@ -95,7 +95,7 @@ export default {
                 {
                     path:'ballot',
                     name:'ballot',
-                    component: Ballot
+                    component: BallotCreation
                 },
             ]
         },
@@ -108,6 +108,11 @@ export default {
             name:'voterlogin',
             component: VoterLogin
         },
+        // {
+        //     path:'/ballot',
+        //     name:'/ballot',
+        //     component: Ballot
+        // },
 
 
 

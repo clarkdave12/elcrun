@@ -29,34 +29,17 @@
                 </tr>
             </tbody>
         </table>
-        <add-voter v-if="adding"></add-voter>
-        <update-voter v-if="updating"></update-voter>
     </b-container>
 </template>
 
 <script>
 
-import addVoter from '../components/AddVoter.vue';
-import updateVoter from '../components/UpdateVoter.vue';
-
 export default {
-    components: {
-        'add-voter': addVoter,
-        'update-voter': updateVoter
-    },
 
     computed: {
 
         voters() {
             return this.$store.getters['voterModule/getVoters'];
-        },
-
-        adding() {
-            return this.$store.getters['voterModule/getAdding'];
-        },
-
-        updating() {
-            return this.$store.getters['voterModule/getUpdating'];
         }
 
     },

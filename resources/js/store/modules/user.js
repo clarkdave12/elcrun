@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios from "axios";
+import cfg from '../../config';
 
 export default {
     namespaced: true,
@@ -50,10 +51,9 @@ export default {
         },
 
         getCurrentUser({commit}) {
-            const token = localStorage.getItem('access_token');
 
             return new Promise((resolve, reject) => {
-                axios.post('/api/get_current_user', [], { headers: { Authorization: 'Bearer ' + token }})
+                axios.post('/api/get_current_user', [], { headers: { Authorization: cfg.TOKEN }})
                     .then(response => {
                         commit('SET_USER', response.data.user);
                         resolve(response.data.user);

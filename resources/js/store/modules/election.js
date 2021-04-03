@@ -1,4 +1,5 @@
 import axios from "axios";
+import cfg from '../../config';
 
 export default {
 
@@ -31,7 +32,7 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.post('/api/elections', election, {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                        Authorization: cfg.TOKEN
                     }
                 })
                 .then(response => {
@@ -51,7 +52,7 @@ export default {
                     url: '/api/elections',
                     data: [],
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                        Authorization: cfg.TOKEN
                     }
                 })
                 .then(response => {
@@ -70,7 +71,7 @@ export default {
                     method: 'GET',
                     url: '/api/elections/' + id,
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                        Authorization: cfg.TOKEN
                     }
                 })
                 .then(response => {
