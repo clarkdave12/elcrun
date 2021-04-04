@@ -37,12 +37,46 @@
                 <b-tabs class="mt-4">
 
                     <b-tab title="Options">
-                        <b-card-group v-for="option in question.options" :key="option.id" class="mx-auto mt-1">
-                            <b-card>
-                                <b-img v-if="option.image" class="mt-2 ml-4 mb-2 image" left :src="option.image" alt="Left image"></b-img>
+                        <!-- <b-card-group v-for="option in question.options" :key="option.id" class="mx-auto my-2"> -->
+                        <div class="my-2" v-for="option in question.options" :key="option.id">
+                            <div v-if="option.image" class="row my-2 py-2 pl-1 pr-3 mx-auto option-row border">
+                                <img :src="option.image" alt="No Image" class="rounded img-thumbnail image mr-3">
+                                <h3 class="my-auto"> {{ option.title }} </h3>
+                                <div class="ml-auto my-auto">
+                                    <b-dropdown
+                                    text="Actions "
+                                    variant="outline-dark"
+                                    no-caret
+                                    role="menu"
+                                    class="m-md-2 float-right mt-5">
+                                        <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
+                                        <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
+                                    </b-dropdown>
+                                </div>
+                            </div>
+
+
+                        <!-- <b-card-group v-for="option in question.options" :key="option.id" class="mx-auto my-2">
+                            <b-card v-if="option.image">
+                                <b-img class="mt-2 ml-4 mb-2 image" left :src="option.image" alt="Left image"></b-img>
                                 <b-card-text class="ml-3 mt-5 float-left"><h4>{{option.title}}</h4></b-card-text>
 
-                                <div class="float-right">
+                                <b-dropdown
+                                    text="Actions "
+                                    variant="outline-dark"
+                                    no-caret
+                                    role="menu"
+                                    class="m-md-2 float-right my-auto">
+                                        <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
+                                        <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
+                                </b-dropdown>
+                            </b-card> -->
+
+                            <!-- FOR NO IMAGE OPTIONS -->
+                            <div v-else class="row my-2 py-2 px-3 mx-auto option-row border">
+                                <p class="my-auto mr-4 h3"><b-icon icon="check-circle-fill"></b-icon></p>
+                                <h3 class="my-auto"> {{ option.title }} </h3>
+                                <div class="ml-auto my-auto">
                                     <b-dropdown id="dropdown-2"
                                     text="Actions "
                                     variant="outline-dark"
@@ -53,8 +87,8 @@
                                         <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
                                     </b-dropdown>
                                 </div>
-                            </b-card>
-                        </b-card-group>
+                            </div>
+                        </div>
                         <b-button @click="toggleOption(question)" variant="success" class="mt-2 ml-1 mb-1 float-left">Add Option</b-button>
                     </b-tab>
 
@@ -92,7 +126,7 @@ export default {
 
     data() {
       return {
-        file1: null
+        file1: null,
       }
     },
 
@@ -192,7 +226,12 @@ export default {
 }
 
 .image {
-    height: 100px;
-    width: 100px;
+    max-height: 100px;
+    max-width: 100px;
 }
+
+.option-row {
+    width: 100%;
+}
+
 </style>

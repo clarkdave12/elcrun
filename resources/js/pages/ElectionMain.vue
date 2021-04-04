@@ -15,7 +15,7 @@
                 </b-navbar-brand>
                 <b-navbar-nav>
                     <b-nav-text>
-                        <b-badge>{{ election.election_status.name }}</b-badge>
+                        <b-badge>{{ election_status }}</b-badge>
                     </b-nav-text>
                 </b-navbar-nav>
             </b-navbar>
@@ -42,6 +42,12 @@ import updateOption from '../components/UpdateOption.vue';
 import updateQuestion from '../components/UpdateQuestion.vue';
 
 export default {
+
+    data() {
+        return {
+            election_status: ''
+        }
+    },
 
     components: {
         sidebar,
@@ -101,6 +107,9 @@ export default {
 
         const id = this.$route.params.electionId;
         this.$store.dispatch('electionModule/getElectionById', id)
+            .then(response => {
+                this.election_status = response.data.election.election_status.name;
+            })
             .catch(error => {
                 console.log(error);
             });

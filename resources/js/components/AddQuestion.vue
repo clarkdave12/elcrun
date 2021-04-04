@@ -25,12 +25,10 @@
             <input v-model="question.title" type="text" name="title" class="form-control" placeholder="New Question Title">
         </div>
 
-        <div class="row px-3 my-4">
-            <label for="description"><h5>Description</h5></label>
-            <textarea v-model="question.description" name="description" class="form-control" cols="30" rows="10"></textarea>
-        </div>
+        <label for="description" class="mt-4"><h5>Description</h5></label>
+        <vue-editor id="editor" v-model="question.description" @imageAdded="imageAdded"></vue-editor>
 
-        <div class="row mx-1 px-3 py-2 my-2 border" id="opts">
+        <div class="row mx-1 px-3 py-2 my-5 border" id="opts">
             <h5>Other Options</h5>
         </div>
 
@@ -43,7 +41,15 @@
 </template>
 
 <script>
+
+import {VueEditor} from 'vue2-editor';
+import axios from 'axios';
+
 export default {
+
+    components: {
+        VueEditor,
+    },
 
     data() {
         return {
@@ -70,6 +76,27 @@ export default {
             }
 
             this.$store.dispatch('ballotModule/addQuestion', payload);
+        },
+
+        imageAdded(file, Editor, cursorLocation, resetUploader) {
+
+            var formData = new FormData();
+            formData.append('image', file);
+
+            axios({
+                method: 'POST',
+                url: '/api/editor_upload',
+                data: formData,
+            })
+            .then(response => {
+                const imageUrl = response.data.url;
+                Editor.insertEmbed(cursorLocation, 'image', imageUrl);
+                resetUploader();
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
+
         }
 
     }
@@ -94,6 +121,11 @@ export default {
 
 #opts {
     height: 35px;
+}
+
+#editor {
+    height: 100%;
+    width: 100%;
 }
 
 </style>

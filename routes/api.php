@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
@@ -30,6 +31,8 @@ Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->mid
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+
+Route::post('/editor_upload', [EditorController::class, 'imageUpload']);
 
 Route::post('/elections', [ElectionController::class, 'addElection'])->middleware('auth:api');
 Route::get('/elections', [ElectionController::class, 'getElections'])->middleware('auth:api');

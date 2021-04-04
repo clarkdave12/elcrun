@@ -25,10 +25,9 @@
             <input v-model="question.title" type="text" name="title" class="form-control" placeholder="New Question Title">
         </div>
 
-        <div class="row px-3 my-4">
-            <label for="description"><h5>Description</h5></label>
-            <textarea v-model="question.description" name="description" class="form-control" cols="30" rows="10"></textarea>
-        </div>
+        <label for="description" class="mt-3"><h5>Description</h5></label>
+        <vue-editor @imageAdded="imageAdded" v-model="question.description"></vue-editor>
+        <!-- <textarea v-model="question.description" name="description" class="form-control" cols="30" rows="10"></textarea> -->
 
         <div class="row mx-1 px-3 py-2 my-2 border" id="opts">
             <h5>Other Options</h5>
@@ -43,7 +42,14 @@
 </template>
 
 <script>
+
+import {VueEditor} from 'vue2-editor';
+
 export default {
+
+    components: {
+        VueEditor,
+    },
 
     computed: {
         question() {
@@ -77,6 +83,27 @@ export default {
                         })
                 })
 
+        },
+
+        imageAdded(file, Editor, cursorLocation, resetUploader) {
+
+            var formData = new FormData();
+            formData.append('image', file);
+
+            axios({
+                method: 'POST',
+                url: '/api/editor_upload',
+                data: formData,
+            })
+            .then(response => {
+                const imageUrl = response.data.url;
+                Editor.insertEmbed(cursorLocation, 'image', imageUrl);
+                resetUploader();
+            })
+            .catch(error => {
+                console.log(error.response);
+            });
+
         }
 
     }
@@ -86,7 +113,7 @@ export default {
 
 <style>
 #wrapper {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     z-index: 1;

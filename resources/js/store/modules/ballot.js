@@ -94,7 +94,6 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response.data);
                     commit('SET_QUESTIONS', response.data.questions);
                     resolve(response);
                 })

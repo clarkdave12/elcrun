@@ -38,10 +38,11 @@
 
             </div>
 
-            <div class="col-12">
+            <div class="pl-3 mb-3">
                 <label for="description"><b>Description</b></label>
-                 <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea>
+                <vue-editor v-model="option.description" @imageAdded="imageAdded"></vue-editor>
             </div>
+            <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
 
             <div class="col-12">
                 <button @click="addOption" class="btn btn-success">Save</button>
@@ -54,7 +55,14 @@
 </template>
 
 <script>
+
+import {VueEditor} from 'vue2-editor';
+
 export default {
+
+    components: {
+        VueEditor,
+    },
 
     data() {
         return {
@@ -113,6 +121,27 @@ export default {
                 .catch(error => {
                     alert(error.response);
                 });
+        },
+
+        imageAdded(file, Editor, cursorLocation, resetUploader) {
+
+            var formData = new FormData();
+            formData.append('image', file);
+
+            axios({
+                method: 'POST',
+                url: '/api/editor_upload',
+                data: formData,
+            })
+            .then(response => {
+                const imageUrl = response.data.url;
+                Editor.insertEmbed(cursorLocation, 'image', imageUrl);
+                resetUploader();
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
+
         }
     }
 
