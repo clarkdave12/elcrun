@@ -54,7 +54,7 @@
 import Navbar from '../components/Navbar.vue';
     export default {
         components: {
-            navigation: Navbar,
+            navigation: Navbar
         },
 
         data() {
