@@ -14,24 +14,34 @@
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar">
-                <a href="#"><i class="fa fa-cog"></i> General</a>
-                <a href="#"><i class="fa fa-times"></i> Close Election</a>
-                <a href="#"><i class="fa fa-calendar-check-o"></i> Dates</a>
-                <a href="#"><i class="fa fa-users"></i> Voters</a>
-                <a href="#"><i class="fa fa-life-ring"></i> Messages</a>
-                <a href="#"><i class="fa fa-envelope "></i> Email</a>
-                <a href="#"><i class="fa fa-pie-chart"></i> Results</a>
-                <a href="#"><i class="fa fa-undo"></i> Duplicate</a>
-                <a href="#"><i class="fa fa-trash"></i> Delete</a>
+                <a rule="button" @click="navigate('general')"><i class="fa fa-cog"></i> General</a>
+                <a rule="button" @click="navigate('date')"><i class="fa fa-calendar-check-o"></i> Dates</a>
+                <a rule="button" @click="navigate('voters')"><i class="fa fa-users"></i> Voters</a>
+                <a rule="button" @click="navigate('messages')"><i class="fa fa-life-ring"></i> Messages</a>
+                <a rule="button" @click="navigate('email_setting')"><i class="fa fa-envelope "></i> Email</a>
+                <a rule="button" @click="navigate('results')"><i class="fa fa-pie-chart"></i> Results</a>
+                <a rule="button" @click="navigate('duplicate')"><i class="fa fa-undo"></i> Duplicate</a>
+                <a rule="button" @click="navigate('delete')"><i class="fa fa-trash"></i> Delete</a>
             </div>
         </div>
         <div class="col-md-6">
-            example
+            <router-view></router-view>
         </div>
     </div>
 
 </div>
 </template>
+
+<script>
+  export default{
+    methods:{
+      navigate(name){
+        this.$router.push({name:name});
+      }
+    }
+  }
+</script>
+
 
 <style>
 .sidebar {

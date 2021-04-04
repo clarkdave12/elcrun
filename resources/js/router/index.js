@@ -7,6 +7,14 @@ import Register from '../pages/Register.vue';
 import ElectionMain from '../pages/ElectionMain.vue';
 import Overview from '../pages/Overview.vue';
 import Settings from '../pages/Settings.vue';
+import EmailSetting from '../components/settings/EmailSetting.vue';
+import Messages from '../components/settings/Messages.vue'
+import Duplicate from '../components/settings/Duplicate.vue'
+import Delete from '../components/settings/Delete.vue'
+import Voters from '../components/settings/Voters.vue'
+import Results  from '../components/settings/Results.vue'
+import Date  from '../components/settings/Date.vue'
+import General  from '../components/settings/General.vue'
 
 import VoterLogin from '../pages/VoterLogin.vue';
 import Ballot from '../pages/Ballot.vue';
@@ -84,7 +92,51 @@ export default {
                     path: 'settings',
                     name: 'settings',
                     component: Settings,
-                    beforeEnter: userAuth
+                    beforeEnter: userAuth,
+                    children: [
+                        {
+                            path:'messages',
+                            name:'messages',
+                            component: Messages
+                        },                        
+                        {
+                            path:'email',
+                            name:'email_setting',
+                            component: EmailSetting
+                        },
+                        {
+                            path:'duplicate',
+                            name:'duplicate',
+                            component: Duplicate
+                        },
+                        {
+                            path:'delete',
+                            name:'delete',
+                            component: Delete
+                        },
+                        {
+                            path:'voters',
+                            name:'voters',
+                            component: Voters
+                        },
+                        {
+                            path:'results',
+                            name:'results',
+                            component: Results
+                        },
+                        {
+                            path:'date',
+                            name:'date',
+                            component: Date
+                        },
+                        {
+                            path:'general',
+                            name:'general',
+                            component: General
+                        },
+
+                    ]
+
                 },
                 {
                     path:'voters',
@@ -108,6 +160,8 @@ export default {
             name:'/ballot',
             component: Ballot
         },
+       
+       
 
         /////////////////////////////
 

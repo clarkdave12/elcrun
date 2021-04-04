@@ -15,8 +15,8 @@
                     id="name"
                     v-model="user.name"
                     :state="userNameState"
-                    aria-describedby="name-feedback"
                     placeholder="John Doe"
+                    aria-describedby="name-feedback"
                     />
                 </div>
                  <div class="mb-3">
