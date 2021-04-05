@@ -121,6 +121,7 @@ export default {
                     resolve(response);
                 })
                 .catch(error => {
+                    console.log(error.response);
                     reject(error);
                 })
 

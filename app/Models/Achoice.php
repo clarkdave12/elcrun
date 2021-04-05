@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Achoice extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function aquestion() {
+        return $this->belongsTo(Aquestion::class);
+    }
+
 }

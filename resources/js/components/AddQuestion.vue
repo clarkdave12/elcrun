@@ -75,7 +75,13 @@ export default {
                 question: this.question
             }
 
-            this.$store.dispatch('ballotModule/addQuestion', payload);
+            this.$store.dispatch('ballotModule/addQuestion', payload)
+                .then(() => {
+
+                })
+                .catch(error => {
+                    alert("error " + error.response.status);
+                })
         },
 
         imageAdded(file, Editor, cursorLocation, resetUploader) {

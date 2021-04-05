@@ -20,9 +20,35 @@ import VotingProcess from '../pages/vote_start/VotingProcess.vue';
 import VoterCreation from '../pages/VoterCreation.vue';
 import BallotCreation from '../pages/BallotCreation.vue'
 import VoteStart from '../pages/vote_start/VoteStartMain.vue';
+import Receipt from '../pages/vote_start/Receipt.vue';
+import VoteView from '../pages/VoteLook.vue';
 
+import RoutePass from '../pages/RoutePass.vue';
 
 import store from '../store';
+import axios from 'axios';
+
+// function notAuth(to, from, next) {
+
+//     if(localStorage.getItem('access_token')) {
+//         if(!store.getters['userModule/getUser']) {
+//             console.log(store.getters['userModule/getUser']);
+//             next('/');
+//         }
+//         else {
+//             store.dispatch('userModule/getCurrentUser')
+//                 .then(() => {
+//                     next('/');
+//                 })
+//                 .catch(() => {
+//                     next();
+//                 });
+//         }
+//     }
+//     else {
+//         next();
+//     }
+// }
 
 function userAuth(to, from, next) {
 
@@ -47,29 +73,6 @@ function userAuth(to, from, next) {
 }
 
 
-function notAuth(to, from, next) {
-
-    if(localStorage.getItem('access_token')) {
-        if(!store.getters['userModule/getUser']) {
-            console.log(store.getters['userModule/getUser']);
-            next('/');
-        }
-        else {
-            store.dispatch('userModule/getCurrentUser')
-                .then(() => {
-                    next('/');
-                })
-                .catch(() => {
-                    next();
-                });
-        }
-    }
-    else {
-        next();
-    }
-}
-
-
 export default {
     mode: 'history',
 
@@ -79,22 +82,24 @@ export default {
             redirect: '/dashboard'
         },
         {
+            path: '/pass',
+            name: 'route_pass',
+            component: RoutePass
+        },
+        {
             path: '/login',
             name: 'login',
             component: Login,
-            beforeEnter: notAuth,
         },
         {
             path: '/register',
             name: 'register',
             component: Register,
-            beforeEnter: notAuth,
         },
         {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            beforeEnter: userAuth
         },
         {
             path: '/election/create',
@@ -114,6 +119,11 @@ export default {
                     name: 'overview',
                     component: Overview,
                     beforeEnter: userAuth
+                },
+                {
+                    path: 'votes',
+                    name: 'vote_view',
+                    component: VoteView
                 },
                 {
                     path: 'settings',
@@ -199,17 +209,23 @@ export default {
             name: 'vote_start',
             component: VoteStart,
             redirect: { name: 'voter_login' },
+
             children: [
                 {
                     path:'login',
                     name:'voter_login',
-                    component: VoterLogin
+                    component: VoterLogin,
                 },
                 {
                     path:'voting',
                     name:'voting_process',
-                    component: VotingProcess
+                    component: VotingProcess,
                 },
+                {
+                    path: 'receipt',
+                    name: 'voting_receipt',
+                    component: Receipt,
+                }
             ]
         },
 

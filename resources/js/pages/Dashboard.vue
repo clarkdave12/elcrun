@@ -85,7 +85,7 @@ import Navbar from '../components/Navbar.vue';
                     this.elections = this.$store.getters['electionModule/getElections'];
                 })
                 .catch(error => {
-                    console.log(error.response);
+
                 });
         }
     }

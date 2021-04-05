@@ -47,13 +47,22 @@ export default {
                     this.$router.replace({ name: 'voting_process' });
                 })
                 .catch(error => {
-                    if(error.status == 401) {
-                        alert('Invalid voter credentials');
+                    if(error.status != 422) {
+                        alert(error.data.errors.message);
                     }
-                    if(error.status == 422) {
-                        alert('All fileds are required');
-                    }
+                    console.log(error);
                 });
+        }
+
+    },
+
+    beforeMount() {
+
+        if(localStorage.getItem('fingerprint')) {
+            localStorage.removeItem('fingerprint');
+            localStorage.removeItem('election_title');
+            localStorage.removeItem('election_date');
+            localStorage.removeItem('receipt_number');
         }
 
     }

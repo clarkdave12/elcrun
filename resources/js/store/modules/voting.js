@@ -43,6 +43,26 @@ export default {
                 })
 
             });
+        },
+
+        authenticateVoter({}, payload) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    method: 'POST',
+                    url: '/api/votes/authenticate_voter',
+                    data: payload,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    console.log(error.response);
+                    reject(error);
+                });
+            });
         }
 
     }

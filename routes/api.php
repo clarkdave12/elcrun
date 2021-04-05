@@ -7,8 +7,6 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteProcessController;
 use App\Http\Controllers\VoterController;
-use App\Models\Option;
-use App\Models\Votes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,4 +51,8 @@ Route::post('/question/option/{questionId}', [OptionController::class, 'addOptio
 Route::put('/question/option/{electionId}/{optionId}', [OptionController::class, 'updateOption'])->middleware('auth:api');
 Route::delete('/question/option/{electionId}/{optionId}', [OptionController::class, 'deleteOption'])->middleware('auth:api');
 
+Route::post('/votes/authenticate_voter', [VoteProcessController::class, 'authenticateVoter']);
+
 Route::post('/votes/{electionId}', [VoteProcessController::class, 'login']);
+Route::post('/submitBallot/{electionId}', [VoteProcessController::class, 'submitBallot']);
+Route::post('/get_vote_history', [VoteProcessController::class, 'getVoteHistory']);

@@ -1,6 +1,16 @@
 <template>
     <div class="container">
         <h2 class="mb-4 outside-text">ElectionRunner</h2>
+
+        <div v-if="err" class="alert alert-danger" role="alert">
+
+            <b> {{ err }} </b>
+
+            <button type="button" class="close" @click="closeAlert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <div class="row">
             <div class="col-sm-12 col-md-4"></div>
             <div class="col-sm-12 col-md-4 px-3 border shadow">
@@ -28,13 +38,19 @@ export default {
             user: {
                 email: '',
                 password: ''
-            }
+            },
+
+            err: ''
         }
     },
 
     methods: {
         navigate(name) {
             this.$router.push({name: name});
+        },
+
+        closeAlert() {
+            this.err = '';
         },
 
         login() {
@@ -44,7 +60,10 @@ export default {
                     this.$router.replace('/');
                 })
                 .catch(error => {
-                    console.log('error = ' + error);
+                    if(error.response.status != 500) {
+                        this.err = "Invalid credentials";
+                        console.log(this.err);
+                    }
                 });
         }
     }

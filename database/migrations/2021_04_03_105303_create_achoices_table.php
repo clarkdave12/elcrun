@@ -21,6 +21,7 @@ class CreateAchoicesTable extends Migration
             $table->string('image')->nullable();
             $table->string('type')->nullable();
             $table->boolean('chosen')->default(false);
+            $table->unsignedBigInteger('aquestion_id');
             $table->timestamps();
         });
     }

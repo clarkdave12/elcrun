@@ -10,6 +10,7 @@
             <b-button variant="outline-primary" class="float-right mr-1" size="sm">Import</b-button>
         </b-card>
     </b-card-group>
+
     <div>
         <b-card-group class="mx-auto mt-5" style="width:800px" v-for="question in questions" v-bind:key="question.id">
             <b-card>
@@ -122,7 +123,14 @@
 </template>
 
 <script>
+
+import deleteQuestion from '../components/modals/BallotQuestionDelete';
+
 export default {
+
+    components: {
+        'delete-question': deleteQuestion
+    },
 
     data() {
       return {

@@ -44,6 +44,13 @@
 <script>
 
 import {VueEditor} from 'vue2-editor';
+import axios from 'axios';
+
+// import ImageResize from 'quill-image-resize-vue';
+// import { ImageDrop } from 'quill-image-drop-module';
+
+// Quill.register("modules/imageDrop", ImageDrop);
+// Quill.register("modules/imageResize", ImageResize);
 
 export default {
 
@@ -94,8 +101,12 @@ export default {
                 method: 'POST',
                 url: '/api/editor_upload',
                 data: formData,
+                headers: {
+                    Accept: 'application/json'
+                }
             })
             .then(response => {
+                console.log(response);
                 const imageUrl = response.data.url;
                 Editor.insertEmbed(cursorLocation, 'image', imageUrl);
                 resetUploader();

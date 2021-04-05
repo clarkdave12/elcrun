@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class EditorController extends Controller
 {
-    public function decodeImage($image) {
+    public function decodedImage($image) {
 
         $exploded = explode(',', $image);
 
@@ -37,12 +37,19 @@ class EditorController extends Controller
 
     public function imageUpload(Request $request) {
 
+        // return $request->image;
+
         $validated = $request->validate([
             'image' => 'required'
         ]);
 
-        $imageURL = $this->decodedImage($validated['image']);
+        $fileName = Str::random(14) . '.png';
+        $path = public_path() . '\editor\\' . $fileName;
+        $image_url = env('APP_URL') . '/editor' . '/' . $fileName;
+        file_put_contents($path, $request->image);
 
-        return response()->json(['url' => $imageURL], 200);
+        return response()->json(['url' => $image_url], 200);
+
+        // return response()->json(['url' => $imageURL], 200);
     }
 }
