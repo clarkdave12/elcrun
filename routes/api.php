@@ -58,3 +58,6 @@ Route::post('/votes/authenticate_voter', [VoteProcessController::class, 'authent
 Route::post('/votes/{electionId}', [VoteProcessController::class, 'login']);
 Route::post('/submitBallot/{electionId}', [VoteProcessController::class, 'submitBallot']);
 Route::post('/get_vote_history', [VoteProcessController::class, 'getVoteHistory']);
+
+Route::get('/election_result/{electionId}', [ElectionController::class, 'getElectionResult']);
+Route::get('/voter_participation/{electionId}', [ElectionController::class, 'getVoterParticipation']);

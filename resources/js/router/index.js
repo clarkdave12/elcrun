@@ -23,7 +23,7 @@ import VoteStart from '../pages/vote_start/VoteStartMain.vue';
 import Receipt from '../pages/vote_start/Receipt.vue';
 import VoteView from '../pages/VoteLook.vue';
 
-import RoutePass from '../pages/RoutePass.vue';
+import ElectionResult from '../pages/ElectionResult.vue';
 
 import store from '../store';
 
@@ -119,6 +119,11 @@ const router = new Router({
                     path:'ballot',
                     name:'ballot',
                     component: BallotCreation,
+                },
+                {
+                    path: 'result',
+                    name: 'result',
+                    component: ElectionResult,
                 },
                 {
                     path: 'settings',

@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div v-if="success">
             <button v-if="clicked" class="btn btn-success btn-block" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

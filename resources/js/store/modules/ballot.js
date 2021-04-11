@@ -95,6 +95,7 @@ export default {
                 })
                 .then(response => {
                     commit('SET_QUESTIONS', response.data.questions);
+                    console.log(response);
                     resolve(response);
                 })
                 .catch(error => {

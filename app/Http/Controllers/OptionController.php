@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Election;
 use Illuminate\Support\Str;
 use App\Models\Option;
+use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,11 @@ class OptionController extends Controller
         }
 
         $option = Option::create($validated);
+        Result::create([
+            'question_id' => $questionId,
+            'option_id' => $option->id,
+            'total' => 0
+        ]);
 
         return response()->json([
             'message' => 'Created',
@@ -116,6 +122,7 @@ class OptionController extends Controller
         $this->checkUserElection($user, $election);
 
         $deleted = Option::where('id', $optionId)->delete();
+        Result::where('option_id', $optionId)->delete();
 
         return response()->json([
             'message' => 'Option Deleted',

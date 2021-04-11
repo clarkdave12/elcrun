@@ -6,6 +6,7 @@ use App\Models\Achoice;
 use App\Models\Aquestion;
 use App\Models\Election;
 use App\Models\Question;
+use App\Models\Result;
 use App\Models\Voter;
 use App\Models\Votes;
 use Illuminate\Http\Request;
@@ -120,6 +121,21 @@ class VoteProcessController extends Controller
 
             }
 
+        }
+
+        // Update Result
+        foreach($data['questions'] as $question) {
+            $options = $question['options'];
+            foreach($options as $option) {
+                if($option['chosen']) {
+
+                    $choice = Result::where('question_id', $question['id'])
+                                ->where('option_id', $option['id'])
+                                ->first();
+                    $choice['total'] = $choice['total'] + 1;
+                    $choice->save();
+                }
+            }
         }
 
 

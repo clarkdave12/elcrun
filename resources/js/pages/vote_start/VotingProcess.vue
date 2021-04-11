@@ -8,7 +8,7 @@
                 <h2>Election Title</h2>
             </div>
 
-            <div class="row" v-for="(question, qi) in questions" :key="qi">
+            <div class="row mt-5" v-for="(question, qi) in questions" :key="qi">
 
                 <!-- Header -->
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow bg-primary">
@@ -27,9 +27,9 @@
                     <p>and maximum of <span class="badge badge-primary p-2"> {{ question.maximum }} </span> option(s)</p>
                 </div>
 
-                <div class="col-sm-12 col-md-8 col-lg-8 mx-auto w-100 border shadow" v-for="(option, oi) in question.options" :key="oi">
+                <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow" v-for="(option, oi) in question.options" :key="oi">
 
-                    <div class="w-100 mb-2 py-2 border shadow d-flex">
+                    <div class="mb-2 py-2 d-flex">
                         <div class="my-auto mr-4 ml-3 h3">
                             <input v-model="option.chosen" role="button" class="check" type="checkbox" name="" id="">
                         </div>
@@ -38,7 +38,7 @@
                             <b-icon v-else icon="check-circle" variant="dark"></b-icon>
                         </p> -->
                         <img v-if="option.image" :src="option.image" class="image my-auto" role="button">
-                        <h3 class="my-auto ml-4" role="button"> Option Title </h3>
+                        <h3 class="my-auto ml-4" role="button"> {{option.title}} </h3>
                         <div @click="toggleDetails(option)" role="button" class="ml-auto my-auto mr-5">
                             <h3 class="h4"><b-icon icon="info-circle-fill" variant="primary"></b-icon></h3>
                         </div>
@@ -168,7 +168,7 @@ import CLButton from '../../components/UI/CLButton';
                     this.$router.replace({name: 'voting_receipt'});
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error.response);
                 });
 
             }
@@ -183,33 +183,6 @@ import CLButton from '../../components/UI/CLButton';
             this.$store.commit('votingModule/SET_OPTION', option);
             this.$store.commit('votingModule/TOGGLE_SHOW_OPTION');
         },
-
-        checkRules() {
-            this.questions.forEach(question => {
-                let min = question.minimum;
-                let max = question.maximum;
-                let voted = 0;
-
-                question.options.forEach(option => {
-                    if(option.chosen) {
-                        console.log('voted ' + voted);
-                        voted++;
-                    }
-                });
-
-                if(min > voted) {
-                    this.questionError.errorMessage = 'You need to choose atleast ' + min + ' option from ' + question.title + ' question';
-                    return false;
-                }
-                if(max < voted) {
-                    this.questionError.errorMessage = 'You can only choose maximum of ' + max + ' options from ' + question.title + ' question';
-                    return false;
-                }
-
-            });
-
-            return true;
-        }
     },
 
     beforeMount() {

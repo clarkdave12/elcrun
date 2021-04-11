@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achoice;
 use App\Models\Election;
 use App\Models\ElectionStatus;
 use App\Models\Option;
 use App\Models\Question;
+use App\Models\Result;
 use App\Models\User;
 use App\Models\Voter;
+use App\Models\Votes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ElectionController extends Controller
 {
@@ -125,6 +129,43 @@ class ElectionController extends Controller
 
         return response()->json(['election' => $election], 200);
     }
+
+
+    public function getElectionResult($electionId) {
+
+        $election = Election::where('id', $electionId)->with('questions')->first();
+
+        $questions = Question::where('election_id', $electionId)->with('options')->get();
+
+        foreach($questions as $question) {
+            foreach($question->options as $option) {
+                $temp = Result::where('option_id', $option->id)->first();
+                $option->votes = $temp->total;
+            }
+        }
+
+        return response()->json([
+            'result' => $questions
+        ], 200);
+    }
+
+    public function getVoterParticipation($electionId) {
+        $election = Election::where('id', $electionId)->with('voters')->first();
+
+        $totalVoters = $election->voters->count();
+
+        $participated = Votes::where('election_id', $electionId)->get();
+
+        $totalVotes = $participated->count();
+
+        $notVoted = $totalVoters - $totalVotes;
+
+        return response()->json([
+            'not_voted' => $notVoted,
+            'voted' => $totalVotes
+        ], 200);
+    }
+
 
     public function deleteElection($electionId) {
 

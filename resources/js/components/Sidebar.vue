@@ -25,6 +25,11 @@
                 Ballot
             </b-list-group-item>
 
+            <b-list-group-item button @click="navigate('result')" class="d-flex justify-content-between align-items-center">
+                <b-icon icon="menu-button-wide"></b-icon>
+                Result
+            </b-list-group-item>
+
             <b-list-group-item button @click="navigate('vote_view')" class="d-flex justify-content-between align-items-center">
                 <b-icon icon="eye-fill"></b-icon>
                 Votes View
