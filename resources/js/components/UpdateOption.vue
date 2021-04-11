@@ -46,7 +46,10 @@
         </div>
 
         <div class="row px-3 ">
-            <button @click="updateOption" class="btn btn-success">Save</button>
+            <!-- <button @click="updateOption" class="btn btn-success">Save</button> -->
+            <div @click="updateOption">
+                <cl-button buttonLabel="Save"></cl-button>
+            </div>
             <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
             <button @click="deleteOption" class="btn btn-danger ml-auto">Delete</button>
         </div>
@@ -57,11 +60,13 @@
 <script>
 
 import {VueEditor} from 'vue2-editor';
+import CLButton from './UI/CLButton';
 
 export default {
 
     components: {
         VueEditor,
+        'cl-button': CLButton
     },
 
     computed: {
@@ -97,13 +102,16 @@ export default {
                 .then(() => {
                     this.$store.dispatch('ballotModule/getQuestions', payload.electionId)
                         .then(() => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             this.$store.commit('ballotModule/SET_UPDATING_OPTION');
                         })
                         .catch(error => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             console.log(error);
                         })
                 })
                 .catch(error => {
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
                     console.log(error.response);
                 });
 

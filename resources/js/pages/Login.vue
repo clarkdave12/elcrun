@@ -1,46 +1,65 @@
 <template>
     <div class="container">
-        <h2 class="mb-4 outside-text">ElectionRunner</h2>
 
-        <div v-if="err" class="alert alert-danger" role="alert">
+        <error-422 v-if="has422"></error-422>
 
-            <b> {{ err }} </b>
+        <div :class="blur">
+            <h2 class="mb-4 outside-text">ElectionRunner</h2>
 
-            <button type="button" class="close" @click="closeAlert">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-4"></div>
-            <div class="col-sm-12 col-md-4 px-3 border shadow">
-                <div class="my-3">
-                    <label for="email">Email Address</label>
-                    <input type="email" placeholder="johndoe@email.com" name="email" id="email" class="form-control" v-model="user.email">
+            <div class="row">
+                <div class="col-sm-12 col-md-4"></div>
+                <div class="col-sm-12 col-md-4 px-3 border shadow">
+                    <div class="my-3">
+                        <label for="email">Email Address</label>
+                        <input type="email" placeholder="johndoe@email.com" name="email" id="email" class="form-control" v-model="user.email">
+                    </div>
+                    <div class="my-3">
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="*******" name="password" id="password" class="form-control" v-model="user.password">
+                    </div>
+                    <div @click="login">
+                        <cl-button buttonLabel="Login"></cl-button>
+                    </div>
                 </div>
-                <div class="my-3">
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="*******" name="password" id="password" class="form-control" v-model="user.password">
-                </div>
-                <b-button @click="login" block class="my-3" variant="success">Login</b-button>
+                <div class="col-sm-12 col-md-4"></div>
             </div>
-            <div class="col-sm-12 col-md-4"></div>
+            <h5 class="outside-text my-3" id="link" @click="navigate('register')">Don't have an account yet? Register now.</h5>
         </div>
-        <h5 class="outside-text my-3" id="link" @click="navigate('register')">Don't have an account yet? Register now.</h5>
     </div>
 </template>
 
 <script>
+
+import Error422 from '../components/messages/Error_422.vue';
+import CLButton from '../components/UI/CLButton.vue';
+
 export default {
+
+    components: {
+        'error-422': Error422,
+        'cl-button': CLButton,
+    },
 
     data() {
         return {
             user: {
                 email: '',
                 password: ''
-            },
+            }
+        }
+    },
 
-            err: ''
+    computed: {
+        has422() {
+            return this.$store.getters['warningModule/get422HasError'];
+        },
+
+        blur() {
+            if(this.$store.getters['warningModule/get422HasError']) {
+                    return 'blur';
+                }
+
+                return 'not-blur';
         }
     },
 
@@ -57,13 +76,21 @@ export default {
 
             this.$store.dispatch('userModule/loginUser', this.user)
                 .then(response => {
-                    this.$router.replace('/');
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                    localStorage.setItem('access_token', response.data.access_token);
+                    this.$router.push('/');
+
                 })
                 .catch(error => {
-                    if(error.response.status != 500) {
-                        this.err = "Invalid credentials";
-                        console.log(this.err);
+                    let status = error.response.status;
+
+                    if(status == 401 || status == 422) {
+                        this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                        let messages = ['Invalid Email and Password'];
+                        this.$store.commit('warningModule/SET_REGISTER_422', messages);
+                        this.$store.commit('warningModule/TOGGLE_HAS_ERROR_422');
                     }
+
                 });
         }
     }
@@ -85,5 +112,9 @@ export default {
 
     .container {
         margin-top: 5%;
+    }
+
+    .blur {
+        filter: blur(8px);
     }
 </style>

@@ -1,13 +1,13 @@
 <template>
 <div>
             <div class="col-1 text- left mt-2 mb-2">
-                
+
 
             </div>
                 <b-card-group deck class="mx-auto" style="width: 800px">
-              
-                  <b-card   
-                    header="Delete Election" 
+
+                  <b-card
+                    header="Delete Election"
                     header-bg-variant="primary"
                     class="font-weight text-light"
                     style="max-width: 800px margin-left: 150px"
@@ -16,22 +16,55 @@
                         <b-form-group
                         >
                         <b-card class="text-left1">
-                        <b-card-text class="dup">Are you sure you want to delete this election? This action is not reversible. 
+                        <b-card-text class="dup">Are you sure you want to delete this election? This action is not reversible.
                             Please contact support if you need to make a change to an election that has already launched.
                         </b-card-text>
-                    
-                                                    
+
+
                         </b-card>
                             <p></p>
-                            <b-button style="max-width: 140px" class="botdel" block variant="success">Delete Election</b-button>
-                        </b-form-group> 
+                            <!-- <b-button style="max-width: 140px" class="botdel" block variant="success">Delete Election</b-button> -->
+                            <div @click="deleteElection" style="max-width: 200px">
+                                <cl-button buttonLabel="Delete Election" :danger="true"></cl-button>
+                            </div>
+                        </b-form-group>
 
                     </b-card>
                 </b-card-group>
 
-                
+
     </div>
 </template>
+
+<script>
+
+import CLButton from '../UI/CLButton';
+
+export default {
+
+    components: {
+        'cl-button': CLButton,
+    },
+
+    methods: {
+        deleteElection() {
+            const electionId = this.$route.params.electionId;
+
+            this.$store.dispatch('electionModule/deleteElection', electionId)
+                .then(response => {
+                    alert('Election Deleted Successfully');
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                    this.$router.replace({name: 'dashboard'});
+                })
+                .catch(error => {
+                    alert('Unable to delete election');
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                })
+        }
+    }
+
+}
+</script>
 
 <style>
 .botdel{

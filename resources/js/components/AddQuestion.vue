@@ -33,7 +33,10 @@
         </div>
 
         <div class="row px-3 py-2 my-2">
-            <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button>
+            <!-- <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button> -->
+            <div class="mr-2" @click="saveQuestion">
+                <cl-button buttonLabel="Save"></cl-button>
+            </div>
             <b-button @click="toggle" variant="outline-secondary">close</b-button>
         </div>
 
@@ -44,11 +47,13 @@
 
 import {VueEditor} from 'vue2-editor';
 import axios from 'axios';
+import CLButton from '../components/UI/CLButton';
 
 export default {
 
     components: {
         VueEditor,
+        'cl-button': CLButton,
     },
 
     data() {
@@ -77,7 +82,15 @@ export default {
 
             this.$store.dispatch('ballotModule/addQuestion', payload)
                 .then(() => {
-
+                    this.$store.dispatch('ballotModule/getQuestions', this.$route.params.electionId)
+                        .then(() => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                            this.toggle();
+                        })
+                        .catch(error => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                            console.log(error.response);
+                        })
                 })
                 .catch(error => {
                     alert("error " + error.response.status);

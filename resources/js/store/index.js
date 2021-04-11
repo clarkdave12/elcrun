@@ -8,6 +8,9 @@ import ballotModule from './modules/ballot.js';
 
 import votingModule from './modules/voting.js';
 
+import warningModule from './modules/warnings.js';
+import UIModule from './modules/UIModule.js';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -17,7 +20,10 @@ export default new Vuex.Store({
         voterModule,
         ballotModule,
 
-        votingModule
+        votingModule,
+
+        warningModule,
+        UIModule,
     }
 
 });

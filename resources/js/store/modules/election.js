@@ -83,6 +83,47 @@ export default {
                     reject(error);
                 })
             });
+        },
+
+        duplicateElection({}, id) {
+            return new Promise((resolve, reject) => {
+
+                axios({
+                    method: 'POST',
+                    url: '/api/duplicate_election/' + id,
+                    headers: {
+                        Authorization: cfg.TOKEN,
+                        Accept: 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+            });
+        },
+
+        deleteElection({}, id) {
+            return new Promise((resolve, reject) => {
+
+                axios({
+                    method: 'DELETE',
+                    url: '/api/delete_election/' + id,
+                    headers: {
+                        Authorization: cfg.TOKEN,
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+            });
         }
 
     }

@@ -1,9 +1,6 @@
 // require('./bootstrap');
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
-
-Vue.use(VueRouter);
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -19,5 +16,5 @@ Vue.component('navigation', require('./components/Navbar.vue').default);
 const app = new Vue({
     el: '#app',
     store,
-    router: new VueRouter(routes)
+    router: routes
 });

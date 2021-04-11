@@ -26,66 +26,47 @@ import VoteView from '../pages/VoteLook.vue';
 import RoutePass from '../pages/RoutePass.vue';
 
 import store from '../store';
-import axios from 'axios';
+
+import Vue from 'vue';
+import Router from 'vue-router';
 
 // function notAuth(to, from, next) {
 
 //     if(localStorage.getItem('access_token')) {
-//         if(!store.getters['userModule/getUser']) {
-//             console.log(store.getters['userModule/getUser']);
-//             next('/');
-//         }
-//         else {
-//             store.dispatch('userModule/getCurrentUser')
-//                 .then(() => {
-//                     next('/');
-//                 })
-//                 .catch(() => {
-//                     next();
-//                 });
-//         }
+//         next('/');
 //     }
 //     else {
 //         next();
 //     }
+
+
 // }
 
-function userAuth(to, from, next) {
+// function userAuth(to, from, next) {
 
-    if(localStorage.getItem('access_token')) {
-        if(!store.getters['userModule/getUser']) {
-            console.log(store.getters['userModule/getUser']);
-            next();
-        }
-        else {
-            store.dispatch('userModule/getCurrentUser')
-                .then(() => {
-                    next();
-                })
-                .catch(() => {
-                    next('/login');
-                });
-        }
-    }
-    else {
-        next('/login');
-    }
-}
+//     if(!store.getters['userModule/getUser']) {
+
+//         store.dispatch('userModule/getCurrentUser', localStorage.getItem('access_token'))
+//                 .then(() => {
+//                     next();
+//                 })
+//                 .catch(() => {
+//                     console.log('error guard');
+//                     next('/login');
+//                 });
+//     }
+//     else {
+//         next()
+//     }
+// }
 
 
-export default {
+Vue.use(Router);
+
+const router = new Router({
     mode: 'history',
 
     routes: [
-        {
-            path: '/',
-            redirect: '/dashboard'
-        },
-        {
-            path: '/pass',
-            name: 'route_pass',
-            component: RoutePass
-        },
         {
             path: '/login',
             name: 'login',
@@ -94,31 +75,35 @@ export default {
         {
             path: '/register',
             name: 'register',
-            component: Register,
+            component: Register
+        },
+        {
+            path: '/',
+            redirect: '/dashboard',
         },
         {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
+            meta: { requireUser: true }
         },
         {
             path: '/election/create',
             name: 'create_election',
             component: CreateElection,
-            beforeEnter: userAuth
+            meta: { requireUser: true }
         },
         {
             path: '/election/:electionId',
             name: 'election',
             component: ElectionMain,
-            beforeEnter: userAuth,
             redirect: {name: 'overview'},
+            meta: { requireUser: true },
             children: [
                 {
                     path: 'overview',
                     name: 'overview',
-                    component: Overview,
-                    beforeEnter: userAuth
+                    component: Overview
                 },
                 {
                     path: 'votes',
@@ -126,10 +111,19 @@ export default {
                     component: VoteView
                 },
                 {
+                    path:'voters',
+                    name:'voters',
+                    component: VoterCreation,
+                },
+                {
+                    path:'ballot',
+                    name:'ballot',
+                    component: BallotCreation,
+                },
+                {
                     path: 'settings',
                     name: 'settings',
                     component: Settings,
-                    beforeEnter: userAuth,
                     redirect: {name: 'general'},
                     children: [
                         {
@@ -175,18 +169,7 @@ export default {
 
                     ]
 
-                },
-                {
-                    path:'voters',
-                    name:'voters',
-                    component: VoterCreation,
-                    beforeEnter: userAuth
-                },
-                {
-                    path:'ballot',
-                    name:'ballot',
-                    component: BallotCreation
-                },
+                }
             ]
         },
 
@@ -245,4 +228,37 @@ export default {
         //=======================================
 
     ]
-}
+
+});
+
+
+router.beforeEach((to, from, next) => {
+
+    if(to.matched.some(record => record.meta.requireUser)) {
+
+        if(localStorage.getItem('access_token')) {
+
+            store.dispatch('userModule/getCurrentUser')
+                .then(response => {
+                    console.log(response.data);
+                    store.commit('userModule/SET_USER', response.data);
+                    next();
+                })
+                .catch(error => {
+                    console.log(error.response);
+                    router.replace({name: 'register'});
+                });
+
+        }
+        else {
+            router.replace({name: 'register'});
+        }
+
+    }
+    else {
+        next();
+    }
+
+});
+
+export default router;

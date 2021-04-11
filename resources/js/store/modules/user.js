@@ -23,8 +23,6 @@ export default {
                     password: user.password
                 })
                 .then(response => {
-                    localStorage.setItem('access_token', response.data.access_token);
-                    commit('SET_USER', response.data.user);
                     resolve(response);
                 })
                 .catch(error => {
@@ -53,14 +51,31 @@ export default {
         getCurrentUser({commit}) {
 
             return new Promise((resolve, reject) => {
-                axios.post('/api/get_current_user', [], { headers: { Authorization: cfg.TOKEN }})
-                    .then(response => {
-                        commit('SET_USER', response.data.user);
-                        resolve(response.data.user);
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
+
+                axios({
+                    method: 'GET',
+                    url: '/api/user',
+                    headers: {
+                        Authorization: cfg.TOKEN
+                    }
+                })
+                .then(response => {
+                    commit('SET_USER', response.data);
+                    resolve(response);
+                })
+                .catch(error => {
+                    // console.log(error.response);
+                    reject(error);
+                });
+
+                // axios.post('/api/get_current_user', [], { headers: { Authorization: cfg.TOKEN }})
+                //     .then(response => {
+                //         commit('SET_USER', response.data.user);
+                //         resolve(response.data.user);
+                //     })
+                //     .catch(error => {
+                //         reject(error);
+                //     });
             });
         }
     }

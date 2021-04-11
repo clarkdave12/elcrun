@@ -34,7 +34,10 @@
         </div>
 
         <div class="row px-3 py-2 my-2">
-            <b-button @click="updateQuestion" class="mr-2" variant="success">Save</b-button>
+            <!-- <b-button @click="updateQuestion" class="mr-2" variant="success">Save</b-button> -->
+            <div @click="updateQuestion" class="mr-2">
+                <cl-button buttonLabel="Save"></cl-button>
+            </div>
             <b-button @click="toggle" variant="outline-secondary">close</b-button>
         </div>
 
@@ -45,17 +48,13 @@
 
 import {VueEditor} from 'vue2-editor';
 import axios from 'axios';
-
-// import ImageResize from 'quill-image-resize-vue';
-// import { ImageDrop } from 'quill-image-drop-module';
-
-// Quill.register("modules/imageDrop", ImageDrop);
-// Quill.register("modules/imageResize", ImageResize);
+import CLButton from '../components/UI/CLButton';
 
 export default {
 
     components: {
         VueEditor,
+        'cl-button': CLButton
     },
 
     computed: {
@@ -80,12 +79,13 @@ export default {
 
             this.$store.dispatch('ballotModule/updateQuestion', payload)
                 .then(response => {
-                    console.log(response);
                     this.$store.dispatch('ballotModule/getQuestions', payload.electionId)
                         .then(() => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             this.$store.commit('ballotModule/SET_UPDATING_QUESTION');
                         })
                         .catch(error => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             console.log(error.response);
                         })
                 })

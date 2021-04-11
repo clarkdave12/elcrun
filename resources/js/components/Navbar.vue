@@ -27,7 +27,7 @@
                         <em>{{ user.name }}</em>
                         </template>
                         <b-dropdown-item href="#">Profile</b-dropdown-item>
-                        <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                        <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
@@ -37,20 +37,17 @@
 
 <script>
 export default {
-    data() {
-        return {
-            user: {}
+    computed: {
+        user() {
+            return this.$store.getters['userModule/getUser'];
         }
     },
 
-    mounted() {
-        this.$store.dispatch('userModule/getCurrentUser')
-            .then(response => {
-                this.user = response;
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    methods: {
+        logout() {
+            localStorage.removeItem('access_token');
+            this.$router.replace('/login');
+        }
     }
 }
 </script>

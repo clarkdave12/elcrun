@@ -25,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->middleware('auth:api');
+// Route::post('/get_current_user', [UserController::class, 'getCurrentUser'])->middleware('auth:api');
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
@@ -35,6 +35,8 @@ Route::post('/editor_upload', [EditorController::class, 'imageUpload']);
 Route::post('/elections', [ElectionController::class, 'addElection'])->middleware('auth:api');
 Route::get('/elections', [ElectionController::class, 'getElections'])->middleware('auth:api');
 Route::get('/elections/{id}', [ElectionController::class, 'getElectionById'])->middleware('auth:api');
+Route::post('/duplicate_election/{electionId}', [ElectionController::class, 'duplicateElection'])->middleware('auth:api');
+Route::delete('/delete_election/{electionId}', [ElectionController::class, 'deleteElection'])->middleware('auth:api');
 
 Route::post('/voters/{electionId}', [VoterController::class, 'addVoter'])->middleware('auth:api');
 Route::get('/voters/{electionId}', [VoterController::class, 'getVoters'])->middleware('auth:api');

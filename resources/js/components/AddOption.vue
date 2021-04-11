@@ -44,9 +44,11 @@
             </div>
             <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
 
-            <div class="col-12">
-                <button @click="addOption" class="btn btn-success">Save</button>
-                <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
+            <div class="row px-3 py-2 my-2">
+                <div @click="addOption">
+                    <cl-button buttonLabel="Save"></cl-button>
+                </div>
+                <button @click="toggle" class="btn btn-outline-secondary ml-2">Cancel</button>
             </div>
 
         </div>
@@ -57,11 +59,13 @@
 <script>
 
 import {VueEditor} from 'vue2-editor';
+import CLButton from './UI/CLButton';
 
 export default {
 
     components: {
         VueEditor,
+        'cl-button': CLButton,
     },
 
     data() {
@@ -112,13 +116,16 @@ export default {
                 .then(() => {
                     this.$store.dispatch('ballotModule/getQuestions', electionId)
                         .then(() => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             this.$store.commit('ballotModule/SET_ADDING_OPTION');
                         })
                         .catch(error => {
+                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
                             alert(error.response);
                         });
                 })
                 .catch(error => {
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
                     alert(error.response);
                 });
         },

@@ -54,7 +54,7 @@
 import Navbar from '../components/Navbar.vue';
     export default {
         components: {
-            navigation: Navbar,
+            navigation: Navbar
         },
 
         data() {
@@ -80,6 +80,7 @@ import Navbar from '../components/Navbar.vue';
         },
 
         mounted() {
+            console.log(this.$store.getters['userModule/getUser']);
             this.$store.dispatch('electionModule/getElections')
                 .then(response => {
                     this.elections = this.$store.getters['electionModule/getElections'];

@@ -1,13 +1,13 @@
 <template>
 <div>
             <div class="col-1 text- left mt-2 mb-2">
-                
+
 
             </div>
                 <b-card-group deck class="mx-auto" style="width: 800px">
-              
-                  <b-card   
-                    header="Duplicate Election" 
+
+                  <b-card
+                    header="Duplicate Election"
                     header-bg-variant="primary"
                     class="font-weight text-light"
                     style="max-width: 800px margin-left: 150px"
@@ -20,17 +20,50 @@
                         </b-card-text>
                         <b-card-text class="dup">After duplicating your election, please verify that the settings were copied over correctly. Your election’s title will be
                             <b>(COPY) (COPY) OMSMC DEMO ELECTION.</b>
-                        </b-card-text>                          
+                        </b-card-text>
                         </b-card>
                         <p></p>
-                            <b-button style="max-width: 140px" class="botdup" block variant="success">Duplicate Election</b-button> 
-                        </b-form-group> 
+                            <!-- <b-button style="max-width: 140px" class="botdup" block variant="success">Duplicate Election</b-button> -->
+                            <div @click="duplicateElection" style="max-width: 200px">
+                                <cl-button buttonLabel="Duplicate Election"></cl-button>
+                            </div>
+                        </b-form-group>
 
                     </b-card>
                 </b-card-group>
-                
+
     </div>
 </template>
+
+<script>
+
+import CLButton from '../UI/CLButton';
+
+export default {
+
+    components: {
+        'cl-button': CLButton,
+    },
+
+    methods: {
+        duplicateElection() {
+            const id = this.$route.params.electionId;
+
+            this.$store.dispatch('electionModule/duplicateElection', id)
+                .then(response => {
+                    alert('Duplication Successful');
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                    this.$router.push({name: 'dashboard'});
+                })
+                .catch(error => {
+                    console.log(error.response);
+                });
+        }
+    }
+
+}
+</script>
+
 <style>
 .botdup{
     font-size: 14px;
