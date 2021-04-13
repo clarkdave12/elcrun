@@ -5,7 +5,7 @@
                 <h3 class="float-start">Ballot</h3>
                 <button type="button" class="btn btn-outline-primary float-end">Import</button>
                 <button type="button" class="btn btn-success btn-space float-end"  @click="toggle">Add Question</button>
-                <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button>
+                <!-- <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button> -->
             </div>
         </div>
     <div>
@@ -35,24 +35,32 @@
                 <b-tabs class="mt-4">
 
                     <b-tab title="Options">
-                        <!-- <b-card-group v-for="option in question.options" :key="option.id" class="mx-auto my-2"> -->
                         <div class="my-2" v-for="option in question.options" :key="option.id">
                             <div v-if="option.image" class="row my-2 py-2 pl-1 pr-3 mx-auto option-row border">
-                                <img :src="option.image" alt="No Image" class="rounded img-thumbnail image mr-3">
-                                <h3 class="my-auto"> {{ option.title }} </h3>
-                                <div class="ml-auto my-auto">
-                                    <b-dropdown
-                                    text="Actions "
-                                    variant="outline-secondary"
-                                    no-caret
-                                    role="menu"
-                                    class="m-md-2 float-end">
-                                        <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
-                                        <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
-                                    </b-dropdown>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img :src="option.image" alt="No Image" class="rounded img-thumbnail image mr-3">
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5 class="my-auto"> {{ option.title }} </h5>
+                                        </div>
+                                        <div class="col">
+                                            <div class="ml-auto my-auto">
+                                                <b-dropdown
+                                                text="●●●"
+                                                variant="outline-secondary"
+                                                no-caret
+                                                role="menu"
+                                                class="m-md-2 float-end">
+                                                    <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
+                                                    <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
+                                                </b-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </div>        
 
                         <!-- <b-card-group v-for="option in question.options" :key="option.id" class="mx-auto my-2">
                             <b-card v-if="option.image">
@@ -72,18 +80,28 @@
 
                             <!-- FOR NO IMAGE OPTIONS -->
                             <div v-else class="row my-2 py-2 px-3 mx-auto option-row border">
-                                <p class="my-auto mr-4 h3"><b-icon class="float-start" icon="check-circle-fill"></b-icon></p>
-                                <h3 class="my-auto"> {{ option.title }} </h3>
-                                <div class="ml-auto my-auto">
-                                    <b-dropdown id="dropdown-2"
-                                    text="●●●"
-                                    variant="outline-secondary"
-                                    no-caret
-                                    role="menu"
-                                    class="m-md-2 float-end">
-                                        <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
-                                        <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
-                                    </b-dropdown>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <p class="my-auto mr-4 h3"><b-icon class="float-start" icon="check-circle-fill"></b-icon></p>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h5 class="my-auto"> {{ option.title }} </h5>
+                                        </div>
+                                        <div class="col">
+                                            <div class="ml-auto my-auto">
+                                                <b-dropdown id="dropdown-2"
+                                                text="●●●"
+                                                variant="outline-secondary"
+                                                no-caret
+                                                role="menu"
+                                                class="m-md-2 float-end">
+                                                    <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
+                                                    <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
+                                                </b-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -223,6 +241,12 @@ export default {
 </script>
 
 <style scoped>
+.col-sm{
+    margin-top: 13px;
+}
+.float-start{
+    margin-top: 15px;
+}
 .menu-1 {
     z-index: 1;
     right: 60px;

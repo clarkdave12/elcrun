@@ -29,16 +29,18 @@
             <div class="col-12 my-3">
                 <label for="email">Voter's Email</label>
                 <input v-model="voter.email" class="form-control" type="email" name="email" id="email" placeholder="johndoe@gmail.com">
+                <button type="button" @click="saveUpdate" class="btn btn-success float-start">Save</button>
+                <button type="button" @click="toggleUpdate" class="btn btn-outline-dark" style="margin-left: 10px">Close</button>
+                <button type="button" @click="deleteVoter" class="btn btn-danger float-end">Delete</button>
             </div>
-        </div>
-
-        <div class="row p-3" >
-            <b-button @click="saveUpdate" variant="success" class="mr-4">Save Voter</b-button>
-            <b-button @click="toggleUpdate" variant="secondary" class="mr-4">Cancel</b-button>
-            <button @click="deleteVoter" class="btn btn-danger ml-auto">Delete</button>
         </div>
     </div>
 </template>
+<style scoped>
+.btn{
+    margin-top: 10px;
+}
+</style>
 
 <script>
 

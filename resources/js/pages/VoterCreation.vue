@@ -5,7 +5,7 @@
                 <h3 class="float-start">Voters</h3>
                 <button type="button" class="btn btn-outline-primary float-end">Import</button>
                 <button type="button" class="btn btn-success btn-space float-end"  @click="toggleAdd">Add Voter</button>
-                <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button>
+                <!-- <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button> -->
             </div>
         </div>
         <b-row class="mt-4">
