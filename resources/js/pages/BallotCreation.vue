@@ -18,11 +18,11 @@
 
                 <div>
                     <b-dropdown id="dropdown-1"
-                    text="Actions "
-                    variant="outline-primary"
+                    text="●●●"
+                    variant="outline-secondary"
                     no-caret
                     role="menu"
-                    class="m-md-2 float-right mt-3">
+                    class="m-md-2 float-end mt-3">
                         <b-dropdown-item @click="toggleQuestionUpdate(question)">Edit</b-dropdown-item>
                         <b-dropdown-divider></b-dropdown-divider>
                         <b-dropdown-item @click="clearOptions(question)">Clear Options</b-dropdown-item>
@@ -43,10 +43,10 @@
                                 <div class="ml-auto my-auto">
                                     <b-dropdown
                                     text="Actions "
-                                    variant="outline-dark"
+                                    variant="outline-secondary"
                                     no-caret
                                     role="menu"
-                                    class="m-md-2 float-right mt-5">
+                                    class="m-md-2 float-end">
                                         <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
                                         <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
                                     </b-dropdown>
@@ -72,15 +72,15 @@
 
                             <!-- FOR NO IMAGE OPTIONS -->
                             <div v-else class="row my-2 py-2 px-3 mx-auto option-row border">
-                                <p class="my-auto mr-4 h3"><b-icon icon="check-circle-fill"></b-icon></p>
+                                <p class="my-auto mr-4 h3"><b-icon class="float-start" icon="check-circle-fill"></b-icon></p>
                                 <h3 class="my-auto"> {{ option.title }} </h3>
                                 <div class="ml-auto my-auto">
                                     <b-dropdown id="dropdown-2"
-                                    text="Actions "
-                                    variant="outline-dark"
+                                    text="●●●"
+                                    variant="outline-secondary"
                                     no-caret
                                     role="menu"
-                                    class="m-md-2 float-right mt-5">
+                                    class="m-md-2 float-end">
                                         <b-dropdown-item @click="toggleUpdate(option)">Edit</b-dropdown-item>
                                         <b-dropdown-item @click="deleteOption(option)">Delete</b-dropdown-item>
                                     </b-dropdown>
@@ -94,12 +94,12 @@
 
                         <h4 class="mt-2">Rules</h4>
                         <b-card class="mb-1 py-3" no-body>
-                            <div class="row pl-4">
+                            <div>
                                 Voters are required to select <b class="mx-1">a minimum of</b> {{question.minimum}} option(s)
                             </div>
                         </b-card>
                         <b-card class="mb-1 py-3" no-body>
-                            <div class="row pl-4">
+                            <div>
                                 Voters can select
                                 <b class="mx-1" v-if="question.maximum == 1">only {{ question.maximum }}</b>
                                 <b class="mx-1" v-else-if="question.maximum > 1">up to {{ question.maximum }}</b>
