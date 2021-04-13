@@ -46,9 +46,10 @@
 
             <div class="row px-3 py-2 my-2">
                 <div @click="addOption">
-                    <cl-button buttonLabel="Save"></cl-button>
+                    <cl-button buttonLabel="Save" class="float-start"></cl-button>
+                    <button @click="toggle" class="btn btn-danger float-end">Delete</button>
                 </div>
-                <button @click="toggle" class="btn btn-outline-secondary ml-2">Cancel</button>
+                
             </div>
 
         </div>

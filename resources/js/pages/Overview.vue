@@ -33,11 +33,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <input type="url" :placeholder="election.election_url" :value="election.election_url" id="typeURL" class="form-control"/>
+                                    <input type="url" :placeholder="election.election_url" :value="election.election_url" ref="input" class="form-control"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-primary" style="background-color: #55acee" href="#!" role="button"><i class="fa fa-clone"></i> Copy</a>
+                                <a class="btn btn-primary" style="background-color: #55acee" @click="copyLongURL" role="button"><i class="fa fa-clone"></i> Copy</a>
                             </div>
                         </div>
                     </div>
@@ -49,11 +49,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <input type="url" :placeholder="election.short_url" :value="election.short_url" id="typeURL" class="form-control"/>
+                                    <input type="url" :placeholder="election.short_url" :value="election.short_url" ref="input1" class="form-control"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-primary" style="background-color: #55acee" href="#!" role="button"><i class="fa fa-clone"></i> Copy</a>
+                                <a class="btn btn-primary" style="background-color: #55acee" @click="copyShortURL" role="button"><i class="fa fa-clone"></i> Copy</a>
                             </div>
                         </div>
                         <div class="col-md-6" style="margin-top: 10px;"><h6><b>Organization Subdomain</b></h6></div>
@@ -100,6 +100,22 @@
 
 <script>
 export default {
+    methods: {
+        copyLongURL(){
+            var longURL = this
+            var copyLong = longURL.$refs.input;
+            copyLong.select();
+            document.execCommand("copy");
+            alert("Copied the URL: " +copyLong.value);
+        },
+        copyShortURL(){
+            var shortURL = this
+            var copyShort = shortURL.$refs.input1;
+            copyShort.select();
+            document.execCommand("copy");
+            alert("Copied the URL: " +copyShort.value);
+        }
+    },
     computed: {
         election() {
             return this.$store.getters['electionModule/getElection'];
