@@ -35,10 +35,11 @@
 
         <div class="row px-3 py-2 my-2">
             <!-- <b-button @click="updateQuestion" class="mr-2" variant="success">Save</b-button> -->
-            <div @click="updateQuestion" class="mr-2">
+            <div @click="updateQuestion" class="mr-2 col-3">
                 <cl-button buttonLabel="Save"></cl-button>
             </div>
-            <b-button @click="toggle" variant="outline-secondary">close</b-button>
+            <button class="btn btn-outline-secondary float-end">Cancel</button>
+            <!-- <b-button @click="toggle" variant="outline-secondary">close</b-button> -->
         </div>
 
     </div>
