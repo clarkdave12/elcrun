@@ -8,7 +8,9 @@
                 <h3>Dashboard</h3>
             </b-col>
             <b-col cols="12" md="6">
-                <b-button @click="navigate('create_election')" variant="success" class="float-right">New Election</b-button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button @click="navigate('create_election')" class="btn btn-success me-md-2">+ New Election</button>
+                </div>
             </b-col>
         </b-row>
 

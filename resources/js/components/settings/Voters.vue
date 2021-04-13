@@ -21,22 +21,22 @@
                         
                     </b-card>
                     </b-card>
-                    <b-card class="text-lefts">
+                    <b-card class="text-lefts mt-2">
                         <h6 class="en"><b> Ballot Receipt </b></h6>
                         <b-card-text class="ena">Enabling this option will allow voters to download a receipt that confirms their ballot <br>has been received.</b-card-text>
                         <b-card class="text-left">
                             <b-card-text class="enab">This setting cannot be changed after the election has been launched.</b-card-text>                                
                         </b-card>
                     </b-card>
-                    <b-card class="text-lefts">
+                    <b-card class="text-lefts mt-2">
                         <h6 class="en"><b> Submit Ballot Confirmation</b></h6>
                         <b-card-text class="ena">When this option is enabled, voters will receive an alert when they 
                             submit their ballot<br> that allows them to continue or cancel and make additional charges.
                              This can be used<br> as a way to prevent accidental submissions or to require voters to double check ballot.</b-card-text>
                             
                     </b-card>
-                    <b-form-group
-                        class="text-dark"
+                    <!-- <b-form-group
+                        class="text-dark float-right"
                         >
                         <p></p>
                         <div class="form-group">
@@ -44,9 +44,8 @@
                             <textarea class="form-control" id="haba" rows="3" placeholder="Default: Are you sure you want to submit your ballot?"></textarea>
                             
                         </div>
-                    </b-form-group>
-                    
-                    <b-button style="max-width: 60px" class="botmes" block variant="success">Save</b-button>
+                    </b-form-group> -->
+                    <button type="button" class="btn btn-success float-start mt-2">Save</button>
 
                     
                       

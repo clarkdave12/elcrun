@@ -49,9 +49,9 @@
                         placeholder="Enter password again"
                         class="form-control" />
                     </div>
-                    <div class="mt-4">
-                        <b-button @click="register" variant="success" class="py-2" block>Continue</b-button>
-                    </div>
+                        <div class="d-grid">
+                            <button class="btn btn-success" type="button">Continue</button> 
+                        </div>
                 </div>
                 <div class="col-sm-12 col-md-3"></div>
             </div>

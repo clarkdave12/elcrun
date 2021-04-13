@@ -30,11 +30,9 @@
                     </b-card>
       
                     <p></p>
-                    <b-button style="max-width: 60px" class="botmes" block variant="success">Save</b-button>
 
-                    
-                      
-                        
+                    <button type="button" class="btn btn-success float-start mt-2">Save</button>
+
                     </b-card>
                 </b-card-group>
                     

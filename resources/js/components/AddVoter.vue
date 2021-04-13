@@ -43,13 +43,12 @@
             <div class="col-12 my-3">
                 <label for="email">Voter's Email</label>
                 <input v-model="voter.email" class="form-control" type="email" name="email" id="email" placeholder="johndoe@gmail.com">
+                <button type="button" @click="addVoter"  class="btn btn-success mt-2 mr-4">Add Voter</button>
+                <button type="button" @click="toggleAdd"  class="btn btn-danger mt-2 mr-4">Cancel</button>
             </div>
         </div>
 
-        <div class="row p-3" >
-            <b-button @click="addVoter" variant="success" class="mr-4">Add Voter</b-button>
-            <b-button @click="toggleAdd" variant="secondary" class="mr-4">Cancel</b-button>
-        </div>
+
     </div>
 </template>
 

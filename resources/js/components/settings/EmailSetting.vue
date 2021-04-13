@@ -22,7 +22,7 @@
                         <b-card-text class="float-left">Enabling this option will allow you 
                           to add an email address for your each of your voters.</b-card-text>
                         </b-card>
-                        <b-button style="max-width: 60px" class="botem" block variant="success">Save</b-button>
+                        <button type="button" class="btn btn-success float-start mt-2">Save</button>
 
                         </b-form-group> 
 

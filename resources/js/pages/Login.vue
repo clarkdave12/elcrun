@@ -18,7 +18,9 @@
                         <input type="password" placeholder="*******" name="password" id="password" class="form-control" v-model="user.password">
                     </div>
                     <div @click="login">
-                        <cl-button buttonLabel="Login"></cl-button>
+                        <div class="d-grid mb-2">
+                            <button class="btn btn-success" type="button">Login</button> 
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4"></div>

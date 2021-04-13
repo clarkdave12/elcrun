@@ -1,16 +1,13 @@
 <template>
 <div>
-    <b-card-group>
-        <b-card>
-            <b-card-text class="float-left">
-                <h5>Ballot</h5>
-            </b-card-text>
-            <b-button variant="secondary" class="float-right ml-1" size="sm">●●●</b-button>
-            <b-button @click="toggle" variant="success" class="float-right" size="sm">+ Add Question</b-button>
-            <b-button variant="outline-primary" class="float-right mr-1" size="sm">Import</b-button>
-        </b-card>
-    </b-card-group>
-
+<div class="card mt-2">
+            <div class="card-body">
+                <h3 class="float-start">Ballot</h3>
+                <button type="button" class="btn btn-outline-primary float-end">Import</button>
+                <button type="button" class="btn btn-success btn-space float-end"  @click="toggle">Add Question</button>
+                <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button>
+            </div>
+        </div>
     <div>
         <b-card-group class="mx-auto mt-5" style="width:800px" v-for="question in questions" v-bind:key="question.id">
             <b-card>
@@ -241,5 +238,7 @@ export default {
 .option-row {
     width: 100%;
 }
-
+.btn-space {
+    margin-right: 5px;
+}
 </style>

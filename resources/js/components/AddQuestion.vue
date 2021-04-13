@@ -35,9 +35,10 @@
         <div class="row px-3 py-2 my-2">
             <!-- <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button> -->
             <div class="mr-2" @click="saveQuestion">
-                <cl-button buttonLabel="Save"></cl-button>
+                <cl-button buttonLabel="Save" class="float-start"></cl-button>
+                <button type="button" class="btn btn-danger float-end">Cancel</button>
             </div>
-            <b-button @click="toggle" variant="outline-secondary">close</b-button>
+            
         </div>
 
     </div>

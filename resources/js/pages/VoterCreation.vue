@@ -1,11 +1,13 @@
 <template>
     <b-container>
-        <b-card class="mt-2">
-            <b-card-text class="float-left"><h3>Voters</h3></b-card-text>
-            <b-button variant="outline-dark" class="float-right ml-2">●●●</b-button>
-            <b-button variant="success" class="float-right" @click="toggleAdd">Add Voter</b-button>
-            <b-button variant="outline-primary" class="float-right mr-2">Import</b-button>
-        </b-card>
+        <div class="card mt-2">
+            <div class="card-body">
+                <h3 class="float-start">Voters</h3>
+                <button type="button" class="btn btn-outline-primary float-end">Import</button>
+                <button type="button" class="btn btn-success btn-space float-end"  @click="toggleAdd">Add Voter</button>
+                <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button>
+            </div>
+        </div>
         <b-row class="mt-4">
             <b-col cols="12" md="6" class="mb-2">
                 <b-form-input placeholder="Search..."></b-form-input>
@@ -72,4 +74,7 @@ export default {
     .table-row:hover {
         background: turquoise;
     }
+.btn-space {
+    margin-right: 5px;
+}
 </style>
