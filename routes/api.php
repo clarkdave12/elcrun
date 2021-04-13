@@ -44,7 +44,7 @@ Route::put('/voters/{electionId}', [VoterController::class, 'updateVoter'])->mid
 Route::delete('/voters/{electionId}/{id}', [VoterController::class, 'deleteVoter'])->middleware('auth:api');
 
 Route::post('/ballot/{electionId}', [QuestionController::class, 'addQuestion'])->middleware('auth:api');
-Route::get('/ballot/{electionId}', [QuestionController::class, 'getQuestions'])->middleware('auth:api');
+Route::get('/ballot/{electionId}', [QuestionController::class, 'getQuestions']);
 Route::put('/ballot/{electionId}/{questionId}', [QuestionController::class, 'updateQuestion'])->middleware('auth:api');
 Route::delete('/ballot/{electionId}/{questionId}', [QuestionController::class, 'deleteQuestion'])->middleware('auth:api');
 Route::delete('/ballot/clear_options/{electionId}/{questionId}', [QuestionController::class, 'clearOptions'])->middleware('auth:api');

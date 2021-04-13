@@ -55,11 +55,11 @@ class QuestionController extends Controller
     }
 
     public function getQuestions($electionId) {
-        $user = Auth::user();
-        $election = Election::where('id', $electionId)->with('user')->with('questions')->first();
-        $this->checkUserElection($user, $election);
+        // $user = Auth::user();
+        // $election = Election::where('id', $electionId)->with('user')->with('questions')->first();
+        // $this->checkUserElection($user, $election);
 
-        $questions = Question::where('election_id', $election->id)->with('options')->get();
+        $questions = Question::where('election_id', $electionId)->with('options')->get();
 
         return response()->json([
             'questions' => $questions
