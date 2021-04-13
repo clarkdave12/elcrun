@@ -45,13 +45,13 @@
             <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
         </div>
 
-        <div class="row px-3 ">
-            <!-- <button @click="updateOption" class="btn btn-success">Save</button> -->
-            <div @click="updateOption">
+        <div class="px-3">
+            <button @click="updateOption" class="btn btn-success">Save</button>
+            <!-- <div @click="updateOption">
                 <cl-button buttonLabel="Save"></cl-button>
-            </div>
+            </div> -->
             <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
-            <button @click="deleteOption" class="btn btn-danger ml-auto">Delete</button>
+            <button @click="deleteOption" class="btn btn-danger float-end">Delete</button>
         </div>
 
     </div>

@@ -7,14 +7,19 @@ export default {
 
     state: {
         elections: [],
-        election: {}
+        election: {},
+        analytics: {},
     },
 
     getters: {
 
         getElections: state => state.elections,
 
-        getElection: state => state.election
+        getElection: state => state.election,
+
+        getElectionCount: state => state.elections.length,
+
+        getAnalytics: state => state.analytics,
 
     },
 
@@ -22,7 +27,9 @@ export default {
 
         SET_ELECTIONS: (state, elections) => state.elections = elections,
 
-        SET_ELECTION: (state, election) => state.election = election
+        SET_ELECTION: (state, election) => state.election = election,
+
+        SET_ANALYTICS: (state, analytics) => state.analytics = analytics,
 
     },
 
@@ -82,6 +89,27 @@ export default {
                 .catch(error => {
                     reject(error);
                 })
+            });
+        },
+
+        getElectionAnalytics({commit}, electionId) {
+            return new Promise((resolve, reject) => {
+
+                axios({
+                    method: 'GET',
+                    url: '/api/voter_participation/' + electionId,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                })
+                .then(response => {
+                    commit('SET_ANALYTICS', response.data);
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
             });
         },
 

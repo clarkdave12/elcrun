@@ -2,6 +2,7 @@
     <div>
 
         <candidate-detail v-if="showDetails"></candidate-detail>
+        <error-message v-if="error"></error-message>
 
         <div :class="blur">
             <div class="text-center mt-3 mb-3">
@@ -23,8 +24,8 @@
                 </div>
 
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow pt-4 my-2">
-                    <p>Voter can select minimum of <span class="badge badge-primary p-2"> {{ question.minimum }} </span> option(s)</p>
-                    <p>and maximum of <span class="badge badge-primary p-2"> {{ question.maximum }} </span> option(s)</p>
+                    <p>Voter can select minimum of <span class="badge bg-primary"> {{ question.minimum }} </span> option(s)</p>
+                    <p>and maximum of <span class="badge bg-primary"> {{ question.maximum }} </span> option(s)</p>
                 </div>
 
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow" v-for="(option, oi) in question.options" :key="oi">
@@ -64,12 +65,14 @@
 import axios from 'axios';
 import VotingCandidateDetail from '../../components/modals/VotingCandidateDetail';
 import CLButton from '../../components/UI/CLButton';
+import ErrorMessage from '../../components/messages/ErrorMessage';
 
   export default {
 
     components: {
         'candidate-detail': VotingCandidateDetail,
         'cl-button': CLButton,
+        'error-message': ErrorMessage
     },
 
     data() {
@@ -94,8 +97,13 @@ import CLButton from '../../components/UI/CLButton';
             }
         },
 
+        error() {
+            return this.$store.getters['warningModule/getError'];
+        },
+
         blur() {
-            if(this.$store.getters['votingModule/getShowOption'])
+            if(this.$store.getters['votingModule/getShowOption'] ||
+                this.$store.getters['warningModule/getError'])
                 return 'blur';
 
             return 'not-blur';
@@ -111,7 +119,6 @@ import CLButton from '../../components/UI/CLButton';
                 question.options.forEach(option => {
                     if(option.chosen) {
                         voted++;
-
                     }
                 });
 
@@ -173,7 +180,9 @@ import CLButton from '../../components/UI/CLButton';
 
             }
             else {
-                alert(validMessage);
+                // alert(validMessage);
+                this.$store.commit('warningModule/SET_ERROR');
+                this.$store.commit('warningModule/SET_ERROR_MESSAGE', validMessage);
                 this.$store.commit('UIModule/SET_LOADING_BUTTON');
             }
         },

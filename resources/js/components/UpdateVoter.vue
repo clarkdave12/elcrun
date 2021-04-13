@@ -80,7 +80,27 @@ export default {
                     this.$store.commit('voterModule/SET_UPDATING');
                 })
                 .catch(error => {
-                    console.log(error);
+                    let message = '';
+                    let errors = error.response.data.errors;
+
+                    if(errors.email) {
+                        message = errors.email[0];
+                    }
+                    else if(errors.name) {
+                        message = errors.name[0];
+                    }
+                    else if(errors.voter_id) {
+                        message = errors.voter_id[0];
+                    }
+                    else if(errors.voter_key) {
+                        message = errors.voter_key[0];
+                    }
+                    else {
+                        message = '500 Server Error';
+                    }
+
+                    this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                    this.$store.commit('warningModule/SET_ERROR');
                 });
         },
 

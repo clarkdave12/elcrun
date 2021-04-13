@@ -59,15 +59,14 @@ import Navbar from '../components/Navbar.vue';
             navigation: Navbar
         },
 
-        data() {
-            return {
-                elections: []
-            }
-        },
-
         computed: {
-            electionCount: function () {
-                return this.elections.length;
+
+            electionCount() {
+                return this.$store.getters['electionModule/getElectionCount'];
+            },
+
+            elections() {
+                return this.$store.getters['electionModule/getElections'];
             }
         },
 
@@ -81,15 +80,25 @@ import Navbar from '../components/Navbar.vue';
             }
         },
 
-        mounted() {
+        created() {
+            if(!localStorage.getItem('access_token') || localStorage.getItem('access_token') == 'TBD') {
+                this.$router.replace('/login');
+            }
             console.log(this.$store.getters['userModule/getUser']);
-            this.$store.dispatch('electionModule/getElections')
-                .then(response => {
-                    this.elections = this.$store.getters['electionModule/getElections'];
+            this.$store.dispatch('userModule/getCurrentUser')
+                .then(() => {
+                    this.$store.dispatch('electionModule/getElections')
+                        .then(response => {
+                            // this.elections = this.$store.getters['electionModule/getElections'];
+                        })
+                        .catch(error => {
+                            alert(error.response);
+                        });
                 })
                 .catch(error => {
-
+                    this.$router.go();
                 });
+
         }
     }
 </script>

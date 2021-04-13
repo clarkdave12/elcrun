@@ -74,7 +74,7 @@ class VoterController extends Controller
             'name' => 'required|max:150',
             'voter_id' => 'required',
             'voter_key' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'comp_key' => 'required'
         ]);
 

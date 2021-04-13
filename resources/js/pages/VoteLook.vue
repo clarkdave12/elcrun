@@ -34,8 +34,8 @@
                             <p class="my-auto mr-4 ml-3 h3"><b-icon icon="check-circle-fill" variant="light"></b-icon></p>
                             <img :src="choice.image" class="image my-auto">
                             <h3 class="my-auto ml-4 text-white"> {{ choice.title }} </h3>
-                            <div role="button" class="ml-auto my-auto mr-5">
-                                <h3 class="h1"><b-icon icon="info-circle-fill" variant="light"></b-icon></h3>
+                            <div role="button" class="float-end my-auto mr-5">
+                                <h3 class="h1 text-end"><b-icon icon="info-circle-fill" variant="light"></b-icon></h3>
                             </div>
                         </div>
                     </div>

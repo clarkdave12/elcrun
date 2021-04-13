@@ -1,18 +1,18 @@
 <template>
     <div>
         <div v-if="success">
-            <button v-if="clicked" class="btn btn-success btn-block" type="button" disabled>
+            <button v-if="clicked" class="btn btn-success" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Loading...
             </button>
 
-            <button v-else @click="toggle" class="btn btn-success btn-block">
+            <button v-else @click="toggle" class="btn btn-success">
                 {{ buttonLabel }}
             </button>
         </div>
 
         <div v-else-if="danger">
-            <button v-if="clicked" class="btn btn-danger btn-block" type="button" disabled>
+            <button v-if="clicked" class="btn btn-danger" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Loading...
             </button>
@@ -23,12 +23,12 @@
         </div>
 
         <div v-else>
-            <button v-if="clicked" class="btn btn-success btn-block" type="button" disabled>
+            <button v-if="clicked" class="btn btn-success" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Loading...
             </button>
 
-            <button v-else @click="toggle" class="btn btn-success btn-block">
+            <button v-else @click="toggle" class="btn btn-success">
                 {{ buttonLabel }}
             </button>
         </div>

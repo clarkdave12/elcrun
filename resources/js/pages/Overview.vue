@@ -68,26 +68,26 @@
             <div class="col-md-4">
                 <b-card-group deck>
                     <div class="container-md">
-                    <b-card bg-variant="info" text-variant="white" header="100%" class="text-center" style="margin-bottom: 10px;">
-                        <b-card-text>Participation (20 Voters)</b-card-text>
+                    <b-card bg-variant="info" text-variant="white" header="Over all participation" class="text-center" style="margin-bottom: 10px;">
+                        <b-card-text> {{ participationPercentage }}% </b-card-text>
                     </b-card>
                     </div>
 
                     <div class="container-md">
-                    <b-card bg-variant="warning" text-variant="white" header="2" class="text-center" style="margin-bottom: 10px;">
-                        <b-card-text>Voters</b-card-text>
+                    <b-card bg-variant="warning" text-variant="white" header="Total Voters" class="text-center" style="margin-bottom: 10px;">
+                        <b-card-text>{{ totalVoters }}</b-card-text>
                     </b-card>
                     </div>
 
                     <div class="container-md">
-                    <b-card bg-variant="danger" text-variant="white" header="4" class="text-center" style="margin-bottom: 10px;">
-                        <!-- <b-card-text>Ballot Questions</b-card-text> -->
+                    <b-card bg-variant="danger" text-variant="white" header="Total Ballots" class="text-center" style="margin-bottom: 10px;">
+                        <b-card-text>{{ totalBallots }}</b-card-text>
                     </b-card>
                     </div>
 
                     <div class="container-md">
-                    <b-card bg-variant="success" text-variant="white" header="3" class="text-center" style="margin-bottom: 10px;">
-                        <b-card-text>Options</b-card-text>
+                    <b-card bg-variant="success" text-variant="white" header="Total Options" class="text-center" style="margin-bottom: 10px;">
+                        <b-card-text>{{ totalOptions }}</b-card-text>
                     </b-card>
                     </div>
                 </b-card-group>
@@ -101,6 +101,7 @@
 <script>
 export default {
     methods: {
+
         copyLongURL(){
             var longURL = this
             var copyLong = longURL.$refs.input;
@@ -108,18 +109,70 @@ export default {
             document.execCommand("copy");
             alert("Copied the URL: " +copyLong.value);
         },
+
+
         copyShortURL(){
             var shortURL = this
             var copyShort = shortURL.$refs.input1;
             copyShort.select();
             document.execCommand("copy");
             alert("Copied the URL: " +copyShort.value);
-        }
+        },
+
     },
     computed: {
+
         election() {
             return this.$store.getters['electionModule/getElection'];
+        },
+
+        participationPercentage() {
+            let analytics = this.$store.getters['electionModule/getAnalytics'];
+            let total = analytics.total_voters;
+            let voted = analytics.voted;
+
+            let percentage = (voted / total) * 100;
+
+            return percentage;
+        },
+
+        voted() {
+            let analytics = this.$store.getters['electionModule/getAnalytics'];
+
+            return analytics.voted;
+        },
+
+        totalVoters() {
+            let analytics = this.$store.getters['electionModule/getAnalytics'];
+            return analytics.total_voters;
+        },
+
+        totalBallots() {
+            let analytics = this.$store.getters['electionModule/getAnalytics'];
+            return analytics.total_ballots;
+        },
+
+        totalOptions() {
+            let analytics = this.$store.getters['electionModule/getAnalytics'];
+            return analytics.total_options;
         }
+    },
+
+    data() {
+        return {
+            percentage: ''
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch('electionModule/getElectionAnalytics', this.$route.params.electionId)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                alert(error.response);
+                console.log(error.response);
+            })
     }
 }
 </script>

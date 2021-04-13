@@ -160,9 +160,24 @@ class ElectionController extends Controller
 
         $notVoted = $totalVoters - $totalVotes;
 
+
+        // get all ballot questions
+        $questions = Question::where('election_id', $electionId)->get();
+        $totalQuestions = $questions->count();
+
+        // get total Options
+        $totalOptions = 0;
+        foreach($questions as $question) {
+            $options = Option::where('question_id', $question->id);
+            $totalOptions += $options->count();
+        }
+
         return response()->json([
             'not_voted' => $notVoted,
-            'voted' => $totalVotes
+            'voted' => $totalVotes,
+            'total_voters' => $totalVoters,
+            'total_ballots' => $totalQuestions,
+            'total_options' => $totalOptions
         ], 200);
     }
 

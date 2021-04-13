@@ -34,11 +34,13 @@
 
         <div class="row px-3 py-2 my-2">
             <!-- <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button> -->
-            <div class="mr-2" @click="saveQuestion">
-                <cl-button buttonLabel="Save" class="float-start"></cl-button>
-                <button type="button" class="btn btn-danger float-end">Cancel</button>
+            <div class="mr-2">
+                <div @click="saveQuestion">
+                    <cl-button buttonLabel="Save" class="float-start"></cl-button>
+                </div>
+                <button @click="toggle" type="button" class="btn btn-danger float-end">Cancel</button>
             </div>
-            
+
         </div>
 
     </div>
@@ -94,7 +96,21 @@ export default {
                         })
                 })
                 .catch(error => {
-                    alert("error " + error.response.status);
+                    let message = '';
+                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+
+                    if(error.data.errors.title) {
+                        message = error.data.errors.title[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
+                    else if(error.data.errors.description) {
+                        message = error.data.errors.description[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
                 })
         },
 

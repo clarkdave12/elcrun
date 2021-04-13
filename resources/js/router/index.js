@@ -85,7 +85,7 @@ const router = new Router({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            meta: { requireUser: true }
+            meta: { requireUser: false }
         },
         {
             path: '/election/create',

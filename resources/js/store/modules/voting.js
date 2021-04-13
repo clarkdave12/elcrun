@@ -94,12 +94,12 @@ export default {
                 });
 
                 if(min > voted) {
-                    let message = 'You need to choose atleast ' + min + ' option from ' + question.title + ' question';
+                    let message = 'You need to choose atleast ' + min + ' option from \"' + question.title + '\" question';
                     commit('SET_VALIDATED', message);
                     valid = false;
                 }
                 else if(max < voted) {
-                    let message = 'You can only choose maximum of ' + max + ' options from ' + question.title + ' question';
+                    let message = 'You can only choose maximum of ' + max + ' options from \"' + question.title + '\" question';
                     commit('SET_VALIDATED', message);
                     valid =  false;
                 }

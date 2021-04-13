@@ -54,7 +54,12 @@
 
 <script>
 import {strGen, strComp} from '../helpers/generator.js';
+import CLButton from './UI/CLButton';
 export default {
+
+    components: {
+        'cl-button': CLButton
+    },
 
     data() {
         return {
@@ -99,7 +104,27 @@ export default {
                     this.$store.commit('voterModule/SET_ADDING');
                 })
                 .catch(error => {
-                    console.log(error.response);
+                    let message = '';
+                    const errors = error.response.data.errors
+
+                    if(errors.email) {
+                        message = errors.email[0];
+                    }
+                    else if(errors.name) {
+                        message = errors.name[0];
+                    }
+                    else if(errors.voter_id) {
+                        message = errors.voter_id[0];
+                    }
+                    else if(errors.voter_key) {
+                        message = errors.voter_key[0];
+                    }
+                    else {
+                        message = '500 Server Error';
+                    }
+
+                    this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                    this.$store.commit('warningModule/SET_ERROR');
                 });
         }
 
