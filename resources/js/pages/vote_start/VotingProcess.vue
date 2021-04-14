@@ -12,6 +12,7 @@
             <div class="row mt-5" v-for="(question, qi) in questions" :key="qi">
 
                 <!-- Header -->
+                
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow bg-primary">
                     <div class="my-auto py-2 px-3 mb-3">
                         <h4 class="text-light"> {{ question.title }} </h4>
@@ -24,33 +25,42 @@
                 </div>
 
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow pt-4 my-2">
-                    <p>Voter can select minimum of <span class="badge bg-primary"> {{ question.minimum }} </span> option(s)</p>
-                    <p>and maximum of <span class="badge bg-primary"> {{ question.maximum }} </span> option(s)</p>
+                    <p class="float-start">Voter can select minimum of <span class="badge bg-primary"> {{ question.minimum }} </span> option(s)</p>
+                    <p class="float-start">and maximum of <span class="badge bg-primary"> {{ question.maximum }} </span> option(s)</p>
                 </div>
-
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow" v-for="(option, oi) in question.options" :key="oi">
-
                     <div class="mb-2 py-2 d-flex">
-                        <div class="my-auto mr-4 ml-3 h3">
-                            <input v-model="option.chosen" role="button" class="check" type="checkbox" name="" id="">
-                        </div>
+                        <div class="container">
+                            <div class="row">
+                               <div class="col-1"> 
+                                    <div class="my-auto h3">
+                                        <input v-model="option.chosen" role="button" class="check mt-5" type="checkbox" name="" id="">
+                                    </div>
+                                </div>
                         <!-- <p @click="checkRules(qi, oi)" role="button" class="my-auto mr-4 ml-3 h3">
                             <b-icon v-if="option.chosen" icon="check-circle-fill" variant="success"></b-icon>
                             <b-icon v-else icon="check-circle" variant="dark"></b-icon>
                         </p> -->
-                        <img v-if="option.image" :src="option.image" class="image my-auto" role="button">
-                        <h3 class="my-auto ml-4" role="button"> {{option.title}} </h3>
-                        <div @click="toggleDetails(option)" role="button" class="ml-auto my-auto mr-5">
-                            <h3 class="h4"><b-icon icon="info-circle-fill" variant="primary"></b-icon></h3>
+                                <div class="col-2">
+                                <img v-if="option.image" :src="option.image" class="image my-auto mt-4" role="button">
+                                </div>
+                                <div class="col-sm">
+                                    <h3 class="my-auto float-start mt-5" role="button"> {{option.title}} </h3>
+                                </div>
+                                <div class="col">
+                                    <div @click="toggleDetails(option)" role="button" class="ml-auto my-auto">
+                                        <h3 class="h4"><b-icon icon="info-circle-fill" variant="primary" class="float-end mt-5"></b-icon></h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
 
-            <b-card-group deck class="mx-auto mt-2" style="width: 800px">
-                <b-card style="max-width: 800px">
+            <b-card-group deck class="mx-auto mt-1" style="width:880px">
+                <b-card>
                     <div @click="submitBallot">
                         <cl-button buttonLabel="Submit Ballot"></cl-button>
                     </div>
