@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style>
-.modal-wrapper {
+.modal-wrappers {
 
         margin: 0;
         position: absolute;
@@ -48,6 +48,14 @@ export default {
         z-index: 1;
         background: whitesmoke;
     }
+
+.modal-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 .button-wrapper {
     bottom: 0;

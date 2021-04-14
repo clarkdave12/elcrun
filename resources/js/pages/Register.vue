@@ -50,7 +50,7 @@
                         class="form-control" />
                     </div>
                         <div class="d-grid">
-                            <button class="btn btn-success" type="button">Continue</button> 
+                            <button @click="register" class="btn btn-success" type="button">Continue</button>
                         </div>
                 </div>
                 <div class="col-sm-12 col-md-3"></div>
@@ -120,16 +120,23 @@ import Error_422 from '../components/messages/Error_422.vue';
                     })
                     .catch(error => {
                         const errs = error.response.data.errors;
-                        this.errors = [];
+                        let message = '';
                         if(errs.email)
-                            this.appendErrors(errs.email);
+                            message = errs.email[0];
                         if(errs.name)
-                            this.appendErrors(errs.name);
-                        if(errs.password)
-                            this.appendErrors(errs.password);
+                            message = errs.name[0];
+                        if(errs.password) {
+                            message = errs.password[0];
+                        }
 
-                        this.$store.commit('warningModule/SET_REGISTER_422', this.errors);
-                        this.$store.commit('warningModule/TOGGLE_HAS_ERROR_422');
+
+                        this.$swal.fire({
+                            icon: 'error',
+                            title: 'Invalid inputs',
+                            text: message,
+                        });
+
+                        console.log(errs);
                     });
             },
 

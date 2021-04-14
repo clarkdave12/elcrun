@@ -1,8 +1,8 @@
 <template>
     <div>
-
-        <candidate-detail v-if="showDetails"></candidate-detail>
-        <error-message v-if="error"></error-message>
+        <div class="">
+            <candidate-detail v-if="showDetails"></candidate-detail>
+        </div>
 
         <div :class="blur">
             <div class="text-center mt-3 mb-3">
@@ -12,7 +12,7 @@
             <div class="row mt-5" v-for="(question, qi) in questions" :key="qi">
 
                 <!-- Header -->
-                
+
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow bg-primary">
                     <div class="my-auto py-2 px-3 mb-3">
                         <h4 class="text-light"> {{ question.title }} </h4>
@@ -32,15 +32,11 @@
                     <div class="mb-2 py-2 d-flex">
                         <div class="container">
                             <div v-if="option.image" class="row">
-                               <div class="col-1"> 
+                               <div class="col-1">
                                     <div class="my-auto h3">
                                         <input v-model="option.chosen" role="button" class="check mt-5" type="checkbox" name="" id="">
                                     </div>
                                 </div>
-                        <!-- <p @click="checkRules(qi, oi)" role="button" class="my-auto mr-4 ml-3 h3">
-                            <b-icon v-if="option.chosen" icon="check-circle-fill" variant="success"></b-icon>
-                            <b-icon v-else icon="check-circle" variant="dark"></b-icon>
-                        </p> -->
                                 <div class="col-2">
                                     <img :src="option.image" class="image my-auto mt-4 float-start" role="button">
                                 </div>
@@ -56,7 +52,7 @@
 
                             <!-- <p>2nd row</p> -->
                             <div v-else class="row">
-                               <div class="col-1"> 
+                               <div class="col-1">
                                     <div class="my-auto h3">
                                         <input v-model="option.chosen" role="button" class="check mt-5" type="checkbox" name="" id="">
                                     </div>
@@ -83,20 +79,18 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                
-                    <b-card class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow mt-2">
-                        
-                            <div @click="submitBallot" class="d-grid">
-                                <button class="btn btn-success" type="button">Submit Ballot</button>
-                            </div>
-                            <!-- <b-button @click="submitBallot" block variant="success">Submit ballot</b-button> -->
-                    </b-card>
             </div>
 
-            
+            <b-card class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow mt-2">
+                <div @click="confirmation" class="d-grid">
+                    <button class="btn btn-success" type="button">Submit Ballot</button>
+                </div>
+            </b-card>
+
         </div>
+        <error-message v-if="error"></error-message>
     </div>
 </template>
 
@@ -179,6 +173,24 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
     },
 
     methods: {
+
+        confirmation() {
+            this.$swal.fire({
+                icon: 'warning',
+                title: 'Are you sure ?',
+                text: 'You won\'t be able to revert this action!',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, submit it!'
+            })
+            .then(result => {
+                if(result.isConfirmed) {
+                    this.submitBallot();
+                }
+            });
+        },
+
         submitBallot() {
 
             this.$store.dispatch('votingModule/ballotValidation', this.questions);
@@ -211,6 +223,12 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
                     localStorage.setItem('election_date', date[0]);
                     localStorage.setItem('receipt_number',response.data.voted.checksum);
 
+                    this.$swal.fire(
+                        'Submitted',
+                        'Your ballot has been submitted',
+                        'success'
+                    );
+
                     this.$router.replace({name: 'voting_receipt'});
                 })
                 .catch(error => {
@@ -219,10 +237,13 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
 
             }
             else {
-                // alert(validMessage);
-                this.$store.commit('warningModule/SET_ERROR');
-                this.$store.commit('warningModule/SET_ERROR_MESSAGE', validMessage);
+                this.$swal.fire({
+                    icon: 'error',
+                    title: 'Incorrect Options',
+                    text: validMessage,
+                });
                 this.$store.commit('UIModule/SET_LOADING_BUTTON');
+
             }
         },
 

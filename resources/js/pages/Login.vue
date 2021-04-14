@@ -19,7 +19,7 @@
                     </div>
                     <div @click="login">
                         <div class="d-grid mb-2">
-                            <button class="btn btn-success" type="button">Login</button> 
+                            <button class="btn btn-success" type="button">Login</button>
                         </div>
                     </div>
                 </div>
@@ -88,9 +88,11 @@ export default {
 
                     if(status == 401 || status == 422) {
                         this.$store.commit('UIModule/SET_LOADING_BUTTON');
-                        let messages = ['Invalid Email and Password'];
-                        this.$store.commit('warningModule/SET_REGISTER_422', messages);
-                        this.$store.commit('warningModule/TOGGLE_HAS_ERROR_422');
+                        this.$swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Credentials',
+                            text: 'The email and password is incorrect'
+                        });
                     }
 
                 });

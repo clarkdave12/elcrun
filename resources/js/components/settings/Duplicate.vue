@@ -24,7 +24,7 @@
                         </b-card>
                         <p></p>
                             <!-- <b-button style="max-width: 140px" class="botdup" block variant="success">Duplicate Election</b-button> -->
-                            <div @click="duplicateElection" style="max-width: 200px">
+                            <div @click="confirmDuplicate" style="max-width: 200px">
                                 <cl-button buttonLabel="Duplicate Election"></cl-button>
                             </div>
                         </b-form-group>
@@ -46,16 +46,47 @@ export default {
     },
 
     methods: {
+
+        confirmDuplicate() {
+
+            this.$swal.fire({
+                icon: 'warning',
+                title: 'Duplicate Election',
+                text: 'Are you sure to duplicate this election?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, duplicate it!'
+            })
+            .then(result => {
+                if(result.isConfirmed) {
+                    this.duplicateElection();
+                }
+            });
+
+        },
+
         duplicateElection() {
             const id = this.$route.params.electionId;
 
             this.$store.dispatch('electionModule/duplicateElection', id)
-                .then(response => {
-                    alert('Duplication Successful');
+                .then(() => {
+
+                    this.$swal.fire(
+                        'Duplicated',
+                        'Election has been duplicated',
+                        'success'
+                    );
+
                     this.$store.commit('UIModule/SET_LOADING_BUTTON');
                     this.$router.push({name: 'dashboard'});
                 })
                 .catch(error => {
+                    this.$swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    });
                     console.log(error.response);
                 });
         }

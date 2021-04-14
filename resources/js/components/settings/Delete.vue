@@ -24,7 +24,7 @@
                         </b-card>
                             <p></p>
                             <!-- <b-button style="max-width: 140px" class="botdel" block variant="success">Delete Election</b-button> -->
-                            <div @click="deleteElection" style="max-width: 200px">
+                            <div @click="confirmDelete" style="max-width: 200px">
                                 <cl-button buttonLabel="Delete Election" :danger="true"></cl-button>
                             </div>
                         </b-form-group>
@@ -47,12 +47,38 @@ export default {
     },
 
     methods: {
+
+        confirmDelete() {
+
+            this.$swal.fire({
+                icon: 'warning',
+                title: 'Delete Election',
+                text: 'Are you sure to delete this election?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then(result => {
+                if(result.isConfirmed) {
+                    this.deleteElection();
+                }
+            });
+
+        },
+
         deleteElection() {
             const electionId = this.$route.params.electionId;
 
             this.$store.dispatch('electionModule/deleteElection', electionId)
                 .then(response => {
-                    alert('Election Deleted Successfully');
+
+                    this.$swal.fire(
+                        'Deleted',
+                        'Election successfully deleted',
+                        'success'
+                    );
+
                     this.$store.commit('UIModule/SET_LOADING_BUTTON');
                     this.$router.replace({name: 'dashboard'});
                 })

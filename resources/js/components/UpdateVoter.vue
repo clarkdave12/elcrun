@@ -31,7 +31,7 @@
                 <input v-model="voter.email" class="form-control" type="email" name="email" id="email" placeholder="johndoe@gmail.com">
                 <button type="button" @click="saveUpdate" class="btn btn-success float-start">Save</button>
                 <button type="button" @click="toggleUpdate" class="btn btn-outline-dark" style="margin-left: 10px">Close</button>
-                <button type="button" @click="deleteVoter" class="btn btn-danger float-end">Delete</button>
+                <button type="button" @click="confirmDelete" class="btn btn-danger float-end">Delete</button>
             </div>
         </div>
     </div>
@@ -104,6 +104,23 @@ export default {
                 });
         },
 
+        confirmDelete() {
+            this.$swal.fire({
+                icon: 'warning',
+                title: 'Delete voter',
+                text: 'Are you sure to remove this voter ?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then(result => {
+                if(result.isConfirmed) {
+                    this.deleteVoter();
+                }
+            });
+        },
+
         deleteVoter() {
 
             const payload = {
@@ -115,6 +132,11 @@ export default {
                 .then(() => {
                     this.$store.dispatch('voterModule/getVoters', payload.electionId)
                         .then(() => {
+                            this.$swal.fire(
+                                'Deleted',
+                                'Voter successfully deleted',
+                                'success'
+                            );
                             this.$store.commit('voterModule/SET_UPDATING');
                         })
                         .catch(error => {

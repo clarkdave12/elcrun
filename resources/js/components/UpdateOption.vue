@@ -51,7 +51,7 @@
                 <cl-button buttonLabel="Save"></cl-button>
             </div> -->
             <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
-            <button @click="deleteOption" class="btn btn-danger float-end">Delete</button>
+            <button @click="confirmDelete" class="btn btn-danger float-end">Delete</button>
         </div>
 
     </div>
@@ -117,6 +117,23 @@ export default {
 
         },
 
+        confirmDelete() {
+            this.$swal.fire({
+                icon: 'warning',
+                title: 'Delete Option',
+                text: 'Are you sure to delete this option ?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then(result => {
+                if(result.isConfirmed) {
+                    this.deleteOption();
+                }
+            });
+        },
+
         deleteOption() {
 
             const payload = {
@@ -128,6 +145,11 @@ export default {
                 .then(() => {
                     this.$store.dispatch('ballotModule/getQuestions', payload.electionId)
                         .then(() => {
+                            this.$swal.fire(
+                                'Deleted',
+                                'Option successfully deleted',
+                                'success'
+                            );
                             this.$store.commit('ballotModule/SET_UPDATING_OPTION');
                         })
                         .catch(error => {
