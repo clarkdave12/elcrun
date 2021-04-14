@@ -31,7 +31,7 @@
                 <div class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow" v-for="(option, oi) in question.options" :key="oi">
                     <div class="mb-2 py-2 d-flex">
                         <div class="container">
-                            <div class="row">
+                            <div v-if="option.image" class="row">
                                <div class="col-1"> 
                                     <div class="my-auto h3">
                                         <input v-model="option.chosen" role="button" class="check mt-5" type="checkbox" name="" id="">
@@ -42,8 +42,36 @@
                             <b-icon v-else icon="check-circle" variant="dark"></b-icon>
                         </p> -->
                                 <div class="col-2">
-                                <img v-if="option.image" :src="option.image" class="image my-auto mt-4" role="button">
+                                    <img :src="option.image" class="image my-auto mt-4 float-start" role="button">
                                 </div>
+                                <div class="col-sm">
+                                    <h3 class="my-auto float-start mt-5" role="button"> {{option.title}} </h3>
+                                </div>
+                                <div class="col">
+                                    <div @click="toggleDetails(option)" role="button" class="ml-auto my-auto">
+                                        <h3 class="h4"><b-icon icon="info-circle-fill" variant="primary" class="float-end mt-5"></b-icon></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <p>2nd row</p> -->
+                            <div v-else class="row">
+                               <div class="col-1"> 
+                                    <div class="my-auto h3">
+                                        <input v-model="option.chosen" role="button" class="check mt-5" type="checkbox" name="" id="">
+                                    </div>
+                                </div>
+                        <!-- <p @click="checkRules(qi, oi)" role="button" class="my-auto mr-4 ml-3 h3">
+                            <b-icon v-if="option.chosen" icon="check-circle-fill" variant="success"></b-icon>
+                            <b-icon v-else icon="check-circle" variant="dark"></b-icon>
+                        </p> -->
+
+                                    <!-- <h3> No Picture</h3> -->
+
+                                    <!-- <div class="col-2">
+                                        <img :src="option.image" class="image my-auto mt-4 float-start" role="button">
+                                    </div> -->
+
                                 <div class="col-sm">
                                     <h3 class="my-auto float-start mt-5" role="button"> {{option.title}} </h3>
                                 </div>
@@ -55,18 +83,19 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
-
+                
+                    <b-card class="col-sm-12 col-md-8 col-lg-8 mx-auto border shadow mt-2">
+                        
+                            <div @click="submitBallot" class="d-grid">
+                                <button class="btn btn-success" type="button">Submit Ballot</button>
+                            </div>
+                            <!-- <b-button @click="submitBallot" block variant="success">Submit ballot</b-button> -->
+                    </b-card>
             </div>
 
-            <b-card-group deck class="mx-auto mt-1" style="width:880px">
-                <b-card>
-                    <div @click="submitBallot">
-                        <cl-button buttonLabel="Submit Ballot"></cl-button>
-                    </div>
-                    <!-- <b-button @click="submitBallot" block variant="success">Submit ballot</b-button> -->
-                </b-card>
-            </b-card-group>
+            
         </div>
     </div>
 </template>

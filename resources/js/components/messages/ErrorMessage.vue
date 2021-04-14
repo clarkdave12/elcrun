@@ -1,7 +1,7 @@
 <template>
     <div class="modal-wrapper px-5 py-5 border shadow">
 
-        <div class="text-center mb-5" id="modal">
+        <div class="text-center mb-3" id="modal">
             <b-icon icon="exclamation-circle" font-scale="5" variant="danger"></b-icon>
         </div>
 

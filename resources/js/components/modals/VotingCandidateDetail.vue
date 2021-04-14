@@ -1,16 +1,24 @@
 <template>
     <div class="modal-wrapper border shadow">
         <div class="row bg-primary w-100 mx-auto header py-2">
-            <h4 class="my-auto text-light modal-title"> {{ option.title }} </h4>
-            <span role="button" @click="toggleModal" class="h2 ml-auto text-light"><b-icon icon="x"></b-icon></span>
+            <div class="col-sm">
+                <h4 class="my-auto text-light modal-title float-start"> {{ option.title }} </h4>
+            </div>
+            <div class="col-sm">
+                <span role="button" @click="toggleModal" class="h2 ml-auto text-light"><b-icon class="float-end" icon="x"></b-icon></span>
+            </div>
         </div>
 
         <div class="row w-100 mx-auto py-2 px-3">
-            <div class="col-3">
-                <img :src="option.image" class="image my-auto">
+            <div class="col-sm">
+                <div class="col-3 mt-5">
+                    <img :src="option.image" class="image my-auto">
+                </div>
             </div>
-            <div class="col-9">
-                {{ option.short_description }}
+            <div class="col">
+                <div class="col-9 mt-5">
+                    {{ option.short_description }}
+                </div>
             </div>
         </div>
 
