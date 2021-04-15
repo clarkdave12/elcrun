@@ -50,16 +50,11 @@
         </div>
 
         <div class="px-3">
-            
+
             <!-- <div @click="updateOption">
                 <cl-button buttonLabel="Save"></cl-button>
             </div> -->
-<<<<<<< HEAD
-            <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
-            <button @click="confirmDelete" class="btn btn-danger float-end">Delete</button>
-=======
-            
->>>>>>> origin/RemoveOtherButtons
+
         </div>
 
     </div>

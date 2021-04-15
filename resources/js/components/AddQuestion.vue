@@ -39,7 +39,7 @@
         <div class="row mx-1 px-3 py-2 my-5 border" id="opts">
             <h5>Other Options</h5>
         </div>
-        <button @click="saveQuestion" class="btn btn-success">Save</button>
+        <button @click="saveQuestion" class="btn btn-success" :disabled="saveDisabled">Save</button>
         <button @click="toggle" class="btn btn-outline-dark ml-2">Cancel</button>
 
         <!-- <div class="row px-3 py-2 my-2">
@@ -76,7 +76,8 @@ export default {
                 description: '',
                 minimum: 1,
                 maximum: 1
-            }
+            },
+            saveDisabled: false
         }
     },
 
@@ -87,6 +88,7 @@ export default {
         },
 
         saveQuestion() {
+            this.saveDisabled = true;
             const id = this.$route.params.electionId;
             const payload = {
                 electionId: id,
@@ -97,17 +99,17 @@ export default {
                 .then(() => {
                     this.$store.dispatch('ballotModule/getQuestions', this.$route.params.electionId)
                         .then(() => {
-                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                            this.saveDisabled = false;
                             this.toggle();
                         })
                         .catch(error => {
-                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                            this.saveDisabled = false;
                             console.log(error.response);
                         })
                 })
                 .catch(error => {
                     let message = '';
-                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                    this.saveDisabled = false;
 
                     if(error.data.errors.title) {
                         message = error.data.errors.title[0];

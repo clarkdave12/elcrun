@@ -44,7 +44,7 @@
             <div class="col-12 my-3">
                 <label for="email">Voter's Email</label>
                 <input v-model="voter.email" class="form-control" type="email" name="email" id="email" placeholder="johndoe@gmail.com">
-                <button type="button" @click="addVoter"  class="btn btn-success mt-2 mr-4">Add Voter</button>
+                <button type="button" @click="addVoter" :disabled="saveDisabled"  class="btn btn-success mt-2 mr-4">Add Voter</button>
                 <button type="button" @click="toggleAdd"  class="btn btn-outline-dark mt-2 mr-4">Cancel</button>
             </div>
         </div>
@@ -70,7 +70,8 @@ export default {
                 voter_key: '',
                 email: '',
                 comp_key: ''
-            }
+            },
+            saveDisabled: false,
         }
     },
 
@@ -93,6 +94,7 @@ export default {
         },
 
         addVoter() {
+            this.saveDisabled = true;
             const electionId = this.$route.params.electionId;
 
             const data = {
@@ -102,6 +104,7 @@ export default {
 
             this.$store.dispatch('voterModule/addVoter', data)
                 .then(() => {
+                    this.saveDisabled = false;
                     this.$store.commit('voterModule/SET_ADDING');
                     this.$swal.fire({
                         icon: 'success',
@@ -135,14 +138,13 @@ export default {
                         message = error.response.data.message;
                     }
 
+                    this.saveDisabled = false;
+
                     this.$swal.fire({
                         icon: 'error',
                         title: 'Invalid Inputs',
                         text: message
                     });
-
-                    // this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
-                    // this.$store.commit('warningModule/SET_ERROR');
                 });
         }
 

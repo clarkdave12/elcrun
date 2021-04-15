@@ -42,18 +42,9 @@
             <div class="pl-3 mb-3">
                 <label for="description"><b>Description</b></label>
                 <vue-editor v-model="option.description" @imageAdded="imageAdded"></vue-editor>
-                <button @click="addOption" class="btn btn-success">Save</button>
+                <button @click="addOption" :disabled="saveDisabled" class="btn btn-success">Save</button>
                 <button @click="toggle" class="btn btn-outline-dark ml-2">Cancel</button>
             </div>
-            <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
-
-            <!-- <div class="row px-3 py-2 my-2">
-                <div @click="addOption">
-                    <cl-button buttonLabel="Save" class="float-start"></cl-button>
-                    <button @click="toggle" class="btn btn-danger float-end">Delete</button>
-                </div>
-                
-            </div> -->
 
         </div>
 
@@ -79,7 +70,8 @@ export default {
                 short_description: '',
                 description: '',
                 image: ''
-            }
+            },
+            saveDisabled: false
         }
     },
 
@@ -108,7 +100,7 @@ export default {
         },
 
         addOption() {
-
+            this.saveDisabled = true;
             const electionId = this.$route.params.electionId;
 
             const payload = {
@@ -120,18 +112,19 @@ export default {
                 .then(() => {
                     this.$store.dispatch('ballotModule/getQuestions', electionId)
                         .then(() => {
-                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                            this.saveDisabled = false;
                             this.$store.commit('ballotModule/SET_ADDING_OPTION');
                         })
                         .catch(error => {
-                            this.$store.commit('UIModule/SET_LOADING_BUTTON');
+
+                            this.saveDisabled = false;
                             alert(error.response);
                         });
                 })
                 .catch(error => {
                     let message = '';
                     const errors = error.response.data.errors
-                    this.$store.commit('UIModule/SET_LOADING_BUTTON');
+                    this.saveDisabled = false;
 
                     if(errors.title){
                         message = errors.title[0];

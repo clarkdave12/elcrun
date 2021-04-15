@@ -26,16 +26,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="row my-4 px-3">
-            <span class="pt-2">
-                Voters can select <b>maximum</b> of
-            </span>
-            <input v-model="question.maximum" type="number" class="form-control number-input mx-2" value="1">
-            <span class="pt-2">
-                 and a <b>minimum</b> of
-            </span>
-            <input v-model="question.minimum" type="number" class="form-control number-input mx-2" value="1">
-        </div> -->
 
         <div class="row px-3 my-2">
             <label for="title"><h5>Title</h5></label>
@@ -52,14 +42,6 @@
 
         <button type="button" @click="updateQuestion"  class="btn btn-success mt-2 mr-4">Save</button>
         <button type="button" @click="toggle"  class="btn btn-outline-dark mt-2 mr-4">Cancel</button>
-        <!-- <div class="row px-3 py-2 my-2">
-            <b-button @click="updateQuestion" class="mr-2" variant="success">Save</b-button>
-            <div @click="updateQuestion" class="mr-2 col-3">
-                <cl-button buttonLabel="Save"></cl-button>
-            </div>
-            <button class="btn btn-outline-secondary float-end">Cancel</button>
-            <b-button @click="toggle" variant="outline-secondary">close</b-button>
-        </div> -->
 
     </div>
 </template>
@@ -116,7 +98,7 @@ export default {
                     if(errors.title){
                          message = errors.title[0];
                     }
-                    
+
                     else if(errors.description){
                         message = errors.description[0];
                     }
