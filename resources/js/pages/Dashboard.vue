@@ -14,21 +14,18 @@
             </b-col>
         </b-row>
 
-        <b-row class="mt-4">
+        <!-- <b-row class="mt-4">
             <b-col cols="12" md="6" class="mb-2">
                 <b-form-input placeholder="Search from election..."></b-form-input>
             </b-col>
             <b-col cols="12" md="6" class="mb-2">
                 <select name="filter" id="filterbox" class="form-control">
                     <option value="" selected disabled> Select Filter</option>
-                    <!-- <option selected="true" v-for="option in options" v-bind:key="option.id">
-                        {{ option.name }}
-                    </option> -->
                 </select>
             </b-col>
-        </b-row>
+        </b-row> -->
 
-        <table class="table table-striped">
+        <table class="table table-striped mt-5">
             <caption>{{ electionCount }} Elections</caption>
             <thead>
                 <tr class="dark">

@@ -103,29 +103,46 @@ export default {
             this.$store.dispatch('voterModule/addVoter', data)
                 .then(() => {
                     this.$store.commit('voterModule/SET_ADDING');
+                    this.$swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'The voter is registered'
+                    });
                 })
                 .catch(error => {
+                    console.log(error.response);
                     let message = '';
                     const errors = error.response.data.errors;
 
-                    if(errors.email) {
-                        message = errors.email[0];
+                    if(errors) {
+                        if(errors.email) {
+                            message = errors.email[0];
+                        }
+                        else if(errors.name) {
+                            message = errors.name[0];
+                        }
+                        else if(errors.voter_id) {
+                            message = errors.voter_id[0];
+                        }
+                        else if(errors.voter_key) {
+                            message = errors.voter_key[0];
+                        }
+                        else {
+                            message = '500 Server Error';
+                        }
                     }
-                    else if(errors.name) {
-                        message = errors.name[0];
-                    }
-                    else if(errors.voter_id) {
-                        message = errors.voter_id[0];
-                    }
-                    else if(errors.voter_key) {
-                        message = errors.voter_key[0];
-                    }
-                    else {
-                        message = '500 Server Error';
+                    else if(error.response.data.message) {
+                        message = error.response.data.message;
                     }
 
-                    this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
-                    this.$store.commit('warningModule/SET_ERROR');
+                    this.$swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Inputs',
+                        text: message
+                    });
+
+                    // this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                    // this.$store.commit('warningModule/SET_ERROR');
                 });
         }
 

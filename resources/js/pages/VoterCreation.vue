@@ -8,11 +8,11 @@
                 <!-- <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button> -->
             </div>
         </div>
-        <b-row class="mt-4">
+        <!-- <b-row class="mt-4">
             <b-col cols="12" md="6" class="mb-2">
                 <b-form-input placeholder="Search..."></b-form-input>
             </b-col>
-        </b-row>
+        </b-row> -->
 
         <table class="table table-border">
             <caption>{{ voters.length }} voters</caption>

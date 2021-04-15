@@ -37,6 +37,15 @@ class VoterController extends Controller
 
         $election = Election::where('id', $electionId)->with('user')->first();
 
+        $emailUsed = Voter::where('email', $validated['email'])
+                            ->where('election_id', $election->id)->first();
+
+        if($emailUsed) {
+            return response()->json([
+                'message' => 'Email already used'
+            ], 422);
+        }
+
         $this->checkUserElection($user, $election);
 
         $validated['election_id'] = $election->id;
