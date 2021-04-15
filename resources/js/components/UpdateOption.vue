@@ -7,7 +7,8 @@
                 <h5 class="text-light">Update Option</h5>
             </div>
             <div class="col-1">
-                <h5 role="button" @click="toggle" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5>
+                <!-- <h5 role="button" @click="toggle" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5> -->
+                <b-button size="sm" variant="primary" class="float-right" @click="toggle"><h5><b-icon icon="x"></b-icon></h5></b-button>
             </div>
         </div>
         <!-- </ HEADER SECTION -->
@@ -41,17 +42,24 @@
             <div class="pl-3 mb-3">
                 <label for="description"><b>Description</b></label>
                 <vue-editor v-model="option.description" @imageAdded="imageAdded"></vue-editor>
+                <button @click="updateOption" class="btn btn-success">Save</button>
+                <button @click="toggle" class="btn btn-outline-dark ml-2">Cancel</button>
+            <button @click="deleteOption" class="btn btn-danger float-end">Delete</button>
             </div>
             <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
         </div>
 
         <div class="px-3">
-            <button @click="updateOption" class="btn btn-success">Save</button>
+            
             <!-- <div @click="updateOption">
                 <cl-button buttonLabel="Save"></cl-button>
             </div> -->
+<<<<<<< HEAD
             <button @click="toggle" class="btn btn-secondary ml-2">Cancel</button>
             <button @click="confirmDelete" class="btn btn-danger float-end">Delete</button>
+=======
+            
+>>>>>>> origin/RemoveOtherButtons
         </div>
 
     </div>
@@ -68,7 +76,6 @@ export default {
         VueEditor,
         'cl-button': CLButton
     },
-
     computed: {
         option() {
             return this.$store.getters['ballotModule/getOption'];
@@ -111,8 +118,27 @@ export default {
                         })
                 })
                 .catch(error => {
+                    let message = '';
+                    const errors = error.response.data.errors
                     this.$store.commit('UIModule/SET_LOADING_BUTTON');
-                    console.log(error.response);
+
+                    if(errors.title){
+                        message = errors.title[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
+                    else if(errors.short_description){
+                        message = errors.short_description[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
+                    else if(errors.description){
+                        message = errors.description[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
                 });
 
         },
@@ -213,5 +239,8 @@ export default {
 
 #editor {
     margin-bottom: 100px;
+}
+.btn{
+    margin-top: 10px;
 }
 </style>

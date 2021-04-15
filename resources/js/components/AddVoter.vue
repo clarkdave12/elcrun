@@ -5,7 +5,8 @@
                 <h5 class="text-light">Add Voter</h5>
             </div>
             <div class="col-1">
-                <h5 @click="toggleAdd" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5>
+                <!-- <h5 @click="toggleAdd" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5> -->
+                <b-button size="sm" variant="primary" class="float-right" @click="toggleAdd"><h5><b-icon icon="x"></b-icon></h5></b-button>
             </div>
         </div>
 
@@ -44,7 +45,7 @@
                 <label for="email">Voter's Email</label>
                 <input v-model="voter.email" class="form-control" type="email" name="email" id="email" placeholder="johndoe@gmail.com">
                 <button type="button" @click="addVoter"  class="btn btn-success mt-2 mr-4">Add Voter</button>
-                <button type="button" @click="toggleAdd"  class="btn btn-danger mt-2 mr-4">Cancel</button>
+                <button type="button" @click="toggleAdd"  class="btn btn-outline-dark mt-2 mr-4">Cancel</button>
             </div>
         </div>
 
@@ -105,7 +106,7 @@ export default {
                 })
                 .catch(error => {
                     let message = '';
-                    const errors = error.response.data.errors
+                    const errors = error.response.data.errors;
 
                     if(errors.email) {
                         message = errors.email[0];

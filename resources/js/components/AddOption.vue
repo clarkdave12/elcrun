@@ -7,7 +7,8 @@
                 <h5 class="text-light">Add New Option</h5>
             </div>
             <div class="col-1">
-                <h5 role="button" @click="toggle" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5>
+                <!-- <h5 role="button" @click="toggle" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5> -->
+                <b-button size="sm" variant="primary" class="float-right" @click="toggle"><h5><b-icon icon="x"></b-icon></h5></b-button>
             </div>
         </div>
         <!-- </ HEADER SECTION -->
@@ -41,16 +42,18 @@
             <div class="pl-3 mb-3">
                 <label for="description"><b>Description</b></label>
                 <vue-editor v-model="option.description" @imageAdded="imageAdded"></vue-editor>
+                <button @click="addOption" class="btn btn-success">Save</button>
+                <button @click="toggle" class="btn btn-outline-dark ml-2">Cancel</button>
             </div>
             <!-- <textarea v-model="option.description" name="description" class="form-control mb-3" cols="30" rows="10"></textarea> -->
 
-            <div class="row px-3 py-2 my-2">
+            <!-- <div class="row px-3 py-2 my-2">
                 <div @click="addOption">
                     <cl-button buttonLabel="Save" class="float-start"></cl-button>
                     <button @click="toggle" class="btn btn-danger float-end">Delete</button>
                 </div>
                 
-            </div>
+            </div> -->
 
         </div>
 
@@ -126,8 +129,27 @@ export default {
                         });
                 })
                 .catch(error => {
+                    let message = '';
+                    const errors = error.response.data.errors
                     this.$store.commit('UIModule/SET_LOADING_BUTTON');
-                    alert(error.response);
+
+                    if(errors.title){
+                        message = errors.title[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
+                    else if(errors.short_description){
+                        message = errors.short_description[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
+
+                    else if(errors.description){
+                        message = errors.description[0];
+                        this.$store.commit('warningModule/SET_ERROR_MESSAGE', message);
+                        this.$store.commit('warningModule/SET_ERROR');
+                    }
                 });
         },
 

@@ -3,7 +3,7 @@
 <div class="card mt-2">
             <div class="card-body">
                 <h3 class="float-start">Ballot</h3>
-                <button type="button" class="btn btn-outline-primary float-end">Import</button>
+                <!-- <button type="button" class="btn btn-outline-primary float-end">Import</button> -->
                 <button type="button" class="btn btn-success btn-space float-end"  @click="toggle">Add Question</button>
                 <!-- <button type="button" class="btn btn-outline-secondary btn-space float-end">●●●</button> -->
             </div>

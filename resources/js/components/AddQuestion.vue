@@ -5,19 +5,27 @@
                 <h5 class="text-light">Add Ballot Question</h5>
             </div>
             <div class="col-1">
-                <h5 @click="toggle" role="button" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5>
+                <!-- <h5 @click="toggle" role="button" class="h2 text-light bg-primary"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5> -->
+                <!-- <button class="btn1 float-right" @click="toggle"></button> -->
+                <b-button size="sm" variant="primary" class="float-right" @click="toggle"><h5><b-icon icon="x"></b-icon></h5></b-button>
             </div>
         </div>
 
-        <div class="row my-4 px-3">
-            <span class="pt-2">
-                Voters can select <b>maximum</b> of
-            </span>
-            <input v-model="question.maximum" type="number" class="form-control number-input mx-2" value="1">
-            <span class="pt-2">
-                 and a <b>minimum</b> of
-            </span>
-            <input v-model="question.minimum" type="number" class="form-control number-input mx-2" value="1">
+        <div class="container">
+            <div class="row row-cols-auto">
+                <div class="col">
+                    <span class="pt-2" id="texts"> Voters can select <b>maximum</b> of</span>
+                </div>
+                <div class="col">
+                    <input v-model="question.maximum" type="number" class="form-control number-input mx-2" value="1">
+                </div>
+                <div class="col">
+                    <span class="pt-2" id="texts"> and a <b>minimum</b> of</span>
+                </div>
+                <div class="col">
+                    <input v-model="question.minimum" type="number" class="form-control number-input mx-2" value="1">
+                </div>
+            </div>
         </div>
 
         <div class="row px-3 my-2">
@@ -31,9 +39,11 @@
         <div class="row mx-1 px-3 py-2 my-5 border" id="opts">
             <h5>Other Options</h5>
         </div>
+        <button @click="saveQuestion" class="btn btn-success">Save</button>
+        <button @click="toggle" class="btn btn-outline-dark ml-2">Cancel</button>
 
-        <div class="row px-3 py-2 my-2">
-            <!-- <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button> -->
+        <!-- <div class="row px-3 py-2 my-2">
+            <b-button @click="saveQuestion" class="mr-2" variant="success">Save</b-button>
             <div class="mr-2">
                 <div @click="saveQuestion">
                     <cl-button buttonLabel="Save" class="float-start"></cl-button>
@@ -41,7 +51,7 @@
                 <button @click="toggle" type="button" class="btn btn-danger float-end">Cancel</button>
             </div>
 
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -162,6 +172,23 @@ export default {
 #editor {
     height: 100%;
     width: 100%;
+}
+.col{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#texts{
+    margin-top: 10px;
+}
+.btn1{
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn1:hover {
+  background-color: RoyalBlue;
 }
 
 </style>
