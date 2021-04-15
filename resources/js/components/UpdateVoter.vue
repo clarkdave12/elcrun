@@ -2,7 +2,7 @@
     <div class="float-right container border shadow" id="wrapper">
         <div class="row py-3 pl-5 bg-primary" id="header">
             <div class="col-11">
-                <h5 class="text-light">Update Voter</h5>
+                <h5 class="text-light float-left">Update Voter</h5>
             </div>
             <div class="col-1">
                 <!-- <h5 @click="toggleUpdate" role="button" class="h2 text-light"><b-icon id="icon" class="float-right" icon="x"></b-icon></h5> -->
